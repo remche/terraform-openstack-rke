@@ -3,3 +3,7 @@ variable "cluster_name" {
   default = "nova-cluster"
 }
 
+variable "ssh_key_file" {
+  type = string
+  default = "~/.ssh/id_rsa.pub"
+}
