@@ -1,5 +1,6 @@
 *.tfvars
 .terraform
+kube_config_cluster.yml
 providers.tf
 terraform.tfstate
 terraform.tfstate.backup

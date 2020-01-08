@@ -1,3 +1,5 @@
+# Global variables
+
 variable "cluster_name" {
   type    = string
   default = "nova-cluster"
@@ -5,8 +7,10 @@ variable "cluster_name" {
 
 variable "ssh_key_file" {
   type    = string
-  default = "~/.ssh/id_rsa.pub"
+  default = "~/.ssh/id_rsa"
 }
+
+# Network variables
 
 variable "nodes_net_cidr" {
   type    = string
@@ -18,6 +22,13 @@ variable "public_net_name" {
   default = "public"
 }
 
+variable "dns_servers" {
+  type    = list(string)
+  default = null
+}
+
+# Node variables
+
 variable "image_name" {
   type    = string
   default = "ubuntu-18.04-docker-x86_64"
@@ -25,12 +36,12 @@ variable "image_name" {
 
 variable "master_count" {
   type    = number
-  default = 2
+  default = 1
 }
 
 variable "worker_count" {
   type    = number
-  default = 1
+  default = 2
 }
 
 variable "master_flavor_name" {
@@ -43,7 +54,14 @@ variable "worker_flavor_name" {
   default = "m1.small"
 }
 
+# RKE variables
+
 variable "system_user" {
   type	  = string
   default = "ubuntu"
+}
+
+variable "use_ssh_agent" {
+  type    = bool
+  default = "true"
 }

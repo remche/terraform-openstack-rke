@@ -17,3 +17,7 @@ variable "nodes_net_cidr" {
 variable "public_net_name" {
   type = string
 }
+
+variable "dns_servers" {
+  type = list(string)
+}

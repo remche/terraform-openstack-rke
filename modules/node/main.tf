@@ -28,6 +28,6 @@ data "null_data_source" "nodes" {
   inputs = {
     name        = openstack_compute_instance_v2.instance[count.index].name
     internal_ip = openstack_compute_instance_v2.instance[count.index].access_ip_v4
-    floating_ip = openstack_networking_floatingip_v2.floating_ip != [] ? openstack_networking_floatingip_v2.floating_ip[count.index].address : 0
+    floating_ip = openstack_networking_floatingip_v2.floating_ip != [] ? openstack_networking_floatingip_v2.floating_ip[count.index].address : ""
   }
 }
