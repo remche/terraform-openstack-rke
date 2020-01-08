@@ -1,7 +1,3 @@
-variable "cluster_name" {
-  type = string
-}
-
 variable "nodes_count" {
   type = string
 }

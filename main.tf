@@ -6,14 +6,15 @@ module "keypair" {
 
 module "network" {
   source = "./modules/network"
-  cluster_name = var.cluster_name
+  network_name = "${var.cluster_name}-nodes-net"
+  subnet_name = "${var.cluster_name}-nodes-subnet"
+  router_name = "${var.cluster_name}-router"
   nodes_net_cidr = var.nodes_net_cidr
   public_net_name = var.public_net_name
 }
 
 module "master" {
   source        = "./modules/node"
-  cluster_name  = var.cluster_name
   name_prefix   = "${var.cluster_name}-master"
   nodes_count   = var.master_count
   image_name    = var.image_name
@@ -27,7 +28,6 @@ module "master" {
 
 module "worker" {
   source        = "./modules/node"
-  cluster_name  = var.cluster_name
   name_prefix   = "${var.cluster_name}-worker"
   nodes_count   = var.worker_count
   image_name    = var.image_name

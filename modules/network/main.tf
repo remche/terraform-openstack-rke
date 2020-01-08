@@ -1,11 +1,11 @@
 resource "openstack_networking_network_v2" "nodes_net" {
-  name           = "${var.cluster_name}-nodes-net"
+  name           = var.network_name
   admin_state_up = "true"
   port_security_enabled = "true"
 }
 
 resource "openstack_networking_subnet_v2" "nodes_subnet" {
-  name       = "${var.cluster_name}-nodes-subnet"
+  name       = var.subnet_name
   network_id = openstack_networking_network_v2.nodes_net.id
   cidr       = var.nodes_net_cidr
   ip_version = 4
@@ -16,7 +16,7 @@ data "openstack_networking_network_v2" "public_net" {
 }
 
 resource "openstack_networking_router_v2" "router" {
-  name                = "${var.cluster_name}-router"
+  name                = var.router_name
   admin_state_up      = true
   external_network_id = data.openstack_networking_network_v2.public_net.id
 }
