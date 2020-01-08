@@ -42,3 +42,8 @@ variable "worker_flavor_name" {
   type    = string
   default = "m1.small"
 }
+
+variable "system_user" {
+  type	  = string
+  default = "ubuntu"
+}

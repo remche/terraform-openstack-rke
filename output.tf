@@ -8,7 +8,11 @@ output "nodes_net_name" {
   description = "The name of the nodes network"
 }
 
-output "master_floating_ips" {
-  value = module.master.floating_ips
-  description = "The floating ips of master nodes"
+output "master_nodes" {
+  value = module.master.nodes
+  description = "The master nodes"
+}
+output "worker_nodes" {
+  value = module.worker.nodes
+  description = "The master nodes"
 }

@@ -37,3 +37,7 @@ module "worker" {
   secgroup_name = "default"
   floating_ip_pool = var.public_net_name
 }
+
+#module "rke" {
+#  source        = "./modules/rke"
+#}

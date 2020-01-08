@@ -12,13 +12,22 @@ resource "openstack_compute_instance_v2" "instance" {
   security_groups = [var.secgroup_name]
 }
 
-resource "openstack_compute_floatingip_v2" "floating_ip" {
+resource "openstack_networking_floatingip_v2" "floating_ip" {
   count = var.assign_floating_ip ? var.nodes_count : 0
   pool  = var.floating_ip_pool
 }
 
 resource "openstack_compute_floatingip_associate_v2" "associate_floating_ip" {
   count       = var.assign_floating_ip ? var.nodes_count : 0
-  floating_ip = openstack_compute_floatingip_v2.floating_ip[count.index].address
+  floating_ip = openstack_networking_floatingip_v2.floating_ip[count.index].address
   instance_id = openstack_compute_instance_v2.instance[count.index].id
+}
+
+data "null_data_source" "nodes" {
+  count       = var.nodes_count
+  inputs = {
+    name        = openstack_compute_instance_v2.instance[count.index].name
+    internal_ip = openstack_compute_instance_v2.instance[count.index].access_ip_v4
+    floating_ip = openstack_networking_floatingip_v2.floating_ip != [] ? openstack_networking_floatingip_v2.floating_ip[count.index].address : 0
+  }
 }
