@@ -21,3 +21,8 @@ variable "use_ssh_agent" {
   type    = bool
   default = "true"
 }
+
+
+variable "bastion_host" {
+  type    = string
+}
