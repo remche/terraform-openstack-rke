@@ -41,7 +41,7 @@ module "worker" {
 
 module "rke" {
   source            = "./modules/rke"
-  rke_depends_on    = [module.master.nodes, module.worker.nodes]
+  rke_depends_on    = [module.master.associate_floating_ip, module.network.router_interface]
   master_nodes      = module.master.nodes
   worker_nodes      = module.worker.nodes
   system_user       = var.system_user
