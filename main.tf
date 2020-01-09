@@ -47,4 +47,5 @@ module "rke" {
   system_user       = var.system_user
   ssh_key_file      = var.ssh_key_file
   use_ssh_agent     = var.use_ssh_agent
+  bastion_host      = var.bastion_host != null ? var.bastion_host : module.master.nodes[0].floating_ip
 }

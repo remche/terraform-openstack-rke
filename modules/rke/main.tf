@@ -1,6 +1,18 @@
+resource "null_resource" "wait_for_ssh" {
+  connection {
+    host = var.bastion_host
+    user = var.system_user
+    private_key = var.use_ssh_agent ? null : file(var.ssh_key_file)
+    agent = var.use_ssh_agent
+  }
+  provisioner "remote-exec" {
+    inline = ["# Connected!"]
+  }
+}
+
 resource "rke_cluster" "cluster" {
 
-  depends_on = [var.rke_depends_on]
+  depends_on = [var.rke_depends_on, null_resource.wait_for_ssh]
 
   dynamic nodes {
     for_each = var.master_nodes
@@ -27,7 +39,7 @@ resource "rke_cluster" "cluster" {
   }
 
   bastion_host {
-    address      = var.master_nodes[0].floating_ip
+    address      = var.bastion_host
     user         = var.system_user
     ssh_key_path = file(var.ssh_key_file)
   }
