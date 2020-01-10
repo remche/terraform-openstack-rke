@@ -34,3 +34,17 @@ variable "os_password" {
   type    = string
 }
 
+variable "master_labels" {
+  type    = map(string)
+  default = { "node-role.kubernetes.io/master" = "true", "node-role.kubernetes.io/ingress" = "true" }
+}
+
+variable "worker_labels" {
+  type    = map(string)
+  default = { "node-role.kubernetes.io/worker" = "true" }
+}
+
+variable "edge_labels" {
+  type    = map(string)
+  default = {"node-role.kubernetes.io/edge" = "true" }
+}

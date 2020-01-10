@@ -25,8 +25,9 @@ resource "rke_cluster" "cluster" {
       internal_address  = nodes.value.internal_ip
       hostname_override = nodes.value.name
       user              = var.system_user
-      role              = ["controlplane", "worker", "etcd"]
+      role              = ["controlplane", "etcd"]
       ssh_key           = file(var.ssh_key_file)
+      labels            = var.master_labels
     }
   }
 
@@ -39,6 +40,7 @@ resource "rke_cluster" "cluster" {
       user              = var.system_user
       role              = ["worker"]
       ssh_key           = file(var.ssh_key_file)
+      labels            = var.worker_labels
     }
   }
 
