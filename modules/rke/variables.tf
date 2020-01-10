@@ -22,7 +22,15 @@ variable "use_ssh_agent" {
   default = "true"
 }
 
-
 variable "bastion_host" {
   type    = string
 }
+
+variable "os_auth_url" {
+  type    = string
+}
+
+variable "os_password" {
+  type    = string
+}
+

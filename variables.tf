@@ -65,7 +65,18 @@ variable "use_ssh_agent" {
   type    = bool
   default = "true"
 }
+
 variable "bastion_host" {
   type    = string
   default = null
 }
+
+variable "os_auth_url" {
+  type    = string
+}
+
+variable "os_password" {
+  type    = string
+}
+
+

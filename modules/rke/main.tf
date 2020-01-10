@@ -10,6 +10,10 @@ resource "null_resource" "wait_for_ssh" {
   }
 }
 
+data "openstack_identity_auth_scope_v3" "scope" {
+  name = "auth_scope"
+}
+
 resource "rke_cluster" "cluster" {
 
   depends_on = [var.rke_depends_on, null_resource.wait_for_ssh]
@@ -45,6 +49,19 @@ resource "rke_cluster" "cluster" {
   }
 
   ssh_agent_auth = var.use_ssh_agent
+
+  cloud_provider {
+    name = "openstack"
+    openstack_cloud_provider {
+      global {
+        username    = data.openstack_identity_auth_scope_v3.scope.user_name
+        password    = var.os_password
+        auth_url    = var.os_auth_url
+        tenant_id   = data.openstack_identity_auth_scope_v3.scope.project_id
+        domain_id = data.openstack_identity_auth_scope_v3.scope.project_domain_id
+      }
+    }
+  }
 
 }
 
