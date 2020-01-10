@@ -14,6 +14,13 @@ module "network" {
   dns_servers     = var.dns_servers
 }
 
+module "secgroup" {
+  source              = "./modules/secgroup"
+  master_name_prefix  = "${var.cluster_name}-master"
+  default_name_prefix = "${var.cluster_name}-default"
+  master_rules        = concat(var.allowed_ingress_ports, var.allowed_master_ports)
+}
+
 module "master" {
   source             = "./modules/node"
   name_prefix        = "${var.cluster_name}-master"
@@ -22,7 +29,7 @@ module "master" {
   flavor_name        = var.master_flavor_name
   keypair_name       = module.keypair.keypair_name
   network_name       = module.network.nodes_net_name
-  secgroup_name      = "default"
+  secgroup_name      = module.secgroup.master_secgroup_name
   assign_floating_ip = "true" 
   floating_ip_pool   = var.public_net_name
 }
@@ -34,8 +41,8 @@ module "worker" {
   image_name       = var.image_name
   flavor_name      = var.worker_flavor_name
   keypair_name     = module.keypair.keypair_name
-  network_name     = module.network.nodes_net_name
-  secgroup_name    = "default"
+  network_name      = module.network.nodes_net_name
+  secgroup_name    = module.secgroup.default_secgroup_name
   floating_ip_pool = var.public_net_name
 }
 
