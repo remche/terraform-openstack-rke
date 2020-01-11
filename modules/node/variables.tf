@@ -1,3 +1,8 @@
+variable "node_depends_on" {
+  type    = any
+  default = null
+}
+
 variable "nodes_count" {
   type = string
 }

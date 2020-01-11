@@ -21,8 +21,8 @@ variable allowed_ingress_ports {
 
 variable allowed_master_ports {
   type        = list
-  default     = [ { "source" = "152.77.119.207",  "protocol" = "tcp", "port" = 22},
-                  { "source" = "152.77.119.207",  "protocol" = "tcp", "port" = 6443}
+  default     = [ { "source" = "0.0.0.0/0",  "protocol" = "tcp", "port" = 22 },
+                  { "source" = "0.0.0.0/0",  "protocol" = "tcp", "port" = 6443 },
                 ]
 }
 

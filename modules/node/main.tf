@@ -1,4 +1,5 @@
 resource "openstack_compute_instance_v2" "instance" {
+  depends_on  = [var.node_depends_on]
   count       = var.nodes_count
   name        = "${var.name_prefix}-${format("%03d", count.index + 1)}"
   image_name  = var.image_name
