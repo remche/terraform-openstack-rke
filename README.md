@@ -1,4 +1,4 @@
-# terraform-rke-provider
+# terraform-openstack-rke
 
 Deploy Kubernetes on Openstack with RKE and Terraform.
 
