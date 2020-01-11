@@ -10,6 +10,22 @@ variable "ssh_key_file" {
   default = "~/.ssh/id_rsa"
 }
 
+# Secgroup variables
+
+variable allowed_ingress_ports {
+  type        = list
+  default     = [ { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 80 },
+                  { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 443}
+                ]
+}
+
+variable allowed_master_ports {
+  type        = list
+  default     = [ { "source" = "0.0.0.0/0",  "protocol" = "tcp", "port" = 22 },
+                  { "source" = "0.0.0.0/0",  "protocol" = "tcp", "port" = 6443 },
+                ]
+}
+
 # Network variables
 
 variable "nodes_net_cidr" {
@@ -65,7 +81,18 @@ variable "use_ssh_agent" {
   type    = bool
   default = "true"
 }
+
 variable "bastion_host" {
   type    = string
   default = null
 }
+
+variable "os_auth_url" {
+  type    = string
+}
+
+variable "os_password" {
+  type    = string
+}
+
+
