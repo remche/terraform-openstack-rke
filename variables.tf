@@ -12,17 +12,12 @@ variable "ssh_key_file" {
 
 # Secgroup variables
 
-variable allowed_ingress_ports {
+variable secgroup_rules {
   type        = list
-  default     = [ { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 80 },
+  default     = [ { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 22 },
+                  { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 6443 },
+                  { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 80 },
                   { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 443}
-                ]
-}
-
-variable allowed_master_ports {
-  type        = list
-  default     = [ { "source" = "0.0.0.0/0",  "protocol" = "tcp", "port" = 22 },
-                  { "source" = "0.0.0.0/0",  "protocol" = "tcp", "port" = 6443 },
                 ]
 }
 
@@ -53,6 +48,11 @@ variable "image_name" {
 variable "master_count" {
   type    = number
   default = 1
+}
+
+variable "edge_count" {
+  type    = number
+  default = 0
 }
 
 variable "worker_count" {
@@ -95,4 +95,17 @@ variable "os_password" {
   type    = string
 }
 
+variable "master_labels" {
+  type    = map(string)
+  default = { "node-role.kubernetes.io/master" = "true", "node-role.kubernetes.io/edge" = "true" }
+}
 
+variable "worker_labels" {
+  type    = map(string)
+  default = { "node-role.kubernetes.io/worker" = "true" }
+}
+
+variable "edge_labels" {
+  type    = map(string)
+  default = {"node-role.kubernetes.io/worker" = "true" }
+}
