@@ -9,6 +9,9 @@ variable "master_nodes" {
 variable "worker_nodes" {
 }
 
+variable "edge_nodes" {
+}
+
 variable "system_user" {
   type = string
 }
@@ -36,15 +39,12 @@ variable "os_password" {
 
 variable "master_labels" {
   type    = map(string)
-  default = { "node-role.kubernetes.io/master" = "true", "node-role.kubernetes.io/ingress" = "true" }
 }
 
 variable "worker_labels" {
   type    = map(string)
-  default = { "node-role.kubernetes.io/worker" = "true" }
 }
 
 variable "edge_labels" {
   type    = map(string)
-  default = {"node-role.kubernetes.io/edge" = "true" }
 }

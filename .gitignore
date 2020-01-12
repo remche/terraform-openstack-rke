@@ -2,5 +2,6 @@
 .terraform
 kube_config_cluster.yml
 providers.tf
+terraform-provider-rke-*
 terraform.tfstate
 terraform.tfstate.backup

@@ -32,6 +32,19 @@ resource "rke_cluster" "cluster" {
   }
 
   dynamic nodes {
+    for_each = var.edge_nodes
+    content {
+      address           = nodes.value.floating_ip != "" ? nodes.value.floating_ip : nodes.value.internal_ip
+      internal_address  = nodes.value.internal_ip
+      hostname_override = nodes.value.name
+      user              = var.system_user
+      role              = ["worker"]
+      ssh_key           = file(var.ssh_key_file)
+      labels            = var.edge_labels
+    }
+  }
+
+  dynamic nodes {
     for_each = var.worker_nodes
     content {
       address           = nodes.value.floating_ip != "" ? nodes.value.floating_ip : nodes.value.internal_ip
@@ -51,6 +64,11 @@ resource "rke_cluster" "cluster" {
   }
 
   ssh_agent_auth = var.use_ssh_agent
+
+  ingress {
+    provider = "nginx"
+    node_selector = { "node-role.kubernetes.io/edge" = "true"  }
+  }
 
   cloud_provider {
     name = "openstack"
