@@ -5,3 +5,7 @@ variable "name_prefix" {
 variable "rules" {
   type = list
 }
+
+variable "bastion_host" {
+  type = string
+}
