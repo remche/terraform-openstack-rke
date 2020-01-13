@@ -16,7 +16,7 @@ module "network" {
 
 module "secgroup" {
   source       = "./modules/secgroup"
-  name_prefix  = "${var.cluster_name}-master"
+  name_prefix  = "${var.cluster_name}"
   rules        = var.secgroup_rules
 }
 
@@ -63,7 +63,7 @@ module "worker" {
 
 module "rke" {
   source            = "./modules/rke"
-  rke_depends_on    = [module.master.associate_floating_ip, module.network.router_interface, module.secgroup.secgroup_name]
+  rke_depends_on    = [module.master.associate_floating_ip, module.network.router_interface, module.secgroup.secgroup_rules]
   master_nodes      = module.master.nodes
   worker_nodes      = module.worker.nodes
   edge_nodes        = module.edge.nodes

@@ -10,7 +10,7 @@ resource "openstack_networking_secgroup_rule_v2" "default_rule" {
   security_group_id = openstack_networking_secgroup_v2.secgroup.id
 }
 
-resource "openstack_networking_secgroup_rule_v2" "master_ingress" {
+resource "openstack_networking_secgroup_rule_v2" "rules" {
   count = length(var.rules)
 
   direction         = "ingress"
