@@ -3,5 +3,5 @@ output "secgroup_name" {
 }
 
 output "secgroup_rules" {
-  value = openstack_networking_secgroup_rule_v2.rules
+  value = concat([openstack_networking_secgroup_rule_v2.default_rule, openstack_networking_secgroup_rule_v2.tunnel_rule], openstack_networking_secgroup_rule_v2.rules)
 }
