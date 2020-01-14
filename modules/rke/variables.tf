@@ -48,3 +48,23 @@ variable "worker_labels" {
 variable "edge_labels" {
   type    = map(string)
 }
+
+variable "deploy_traefik" {
+  type    = bool
+}
+
+variable "deploy_nginx" {
+  type    = bool
+}
+
+variable "acme_email" {
+  type    = string
+}
+
+variable "storage_types" {
+  type    = list(string)
+}
+
+variable "default_storage" {
+  type    = string
+}

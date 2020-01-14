@@ -66,7 +66,7 @@ resource "rke_cluster" "cluster" {
   ssh_agent_auth = var.use_ssh_agent
 
   ingress {
-    provider = "nginx"
+    provider = var.deploy_nginx ? "nginx" : "none"
     node_selector = { "node-role.kubernetes.io/edge" = "true"  }
   }
 
@@ -82,6 +82,11 @@ resource "rke_cluster" "cluster" {
       }
     }
   }
+
+  addons = join("", [templatefile("${path.module}/addons/cinder.yml.tmpl", 
+                                  {types = var.storage_types, default_storage = var.default_storage}),
+                     templatefile("${path.module}/addons/traefik2.yml.tmpl",
+                                  {deploy = var.deploy_traefik, acme_email = var.acme_email})])
 
 }
 

@@ -1,0 +1,27 @@
+%{ if types == null ~}
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: cinder
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: kubernetes.io/cinder
+---
+%{ else ~}
+  %{~ for type in types ~}
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: cinder-${type}
+  %{~ if type == default_storage ~}
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  %{~ endif ~}
+provisioner: kubernetes.io/cinder
+parameters:
+  type: ${type}
+---
+  %{~ endfor ~}
+%{ endif ~}
