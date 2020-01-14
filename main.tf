@@ -64,7 +64,11 @@ module "worker" {
 
 module "rke" {
   source            = "./modules/rke"
-  rke_depends_on    = [module.master.associate_floating_ip, module.network.router_interface, module.secgroup.secgroup_rules]
+  rke_depends_on    = [module.master.associate_floating_ip,
+                       module.edge.associate_floating_ip, 
+                       module.worker.associate_floating_ip,
+                       module.network.router_interface,
+                       module.secgroup.secgroup_rules]
   master_nodes      = module.master.nodes
   worker_nodes      = module.worker.nodes
   edge_nodes        = module.edge.nodes
@@ -77,4 +81,9 @@ module "rke" {
   master_labels     = var.master_labels
   edge_labels       = var.edge_labels
   worker_labels     = var.worker_labels
+  deploy_traefik    = var.deploy_traefik
+  deploy_nginx      = var.deploy_nginx
+  acme_email        = var.acme_email
+  storage_types     = var.storage_types
+  default_storage   = var.default_storage
 }

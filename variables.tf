@@ -109,3 +109,28 @@ variable "edge_labels" {
   type    = map(string)
   default = {"node-role.kubernetes.io/worker" = "true" }
 }
+
+variable "deploy_traefik" {
+  type    = bool
+  default = "true"
+}
+
+variable "deploy_nginx" {
+  type    = bool
+  default = "false"
+}
+
+variable "acme_email" {
+  type    = string
+  default = "example@example.com"
+}
+
+variable "storage_types" {
+  type    = list(string)
+  default = null
+}
+
+variable "default_storage" {
+  type    = string
+  default = null
+}

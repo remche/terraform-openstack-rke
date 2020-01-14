@@ -8,7 +8,12 @@ output "master_nodes" {
   description = "The master nodes"
 }
 
+output "edge_nodes" {
+  value = module.worker.nodes
+  description = "The edge nodes"
+}
+
 output "worker_nodes" {
   value = module.worker.nodes
-  description = "The master nodes"
+  description = "The worker nodes"
 }
