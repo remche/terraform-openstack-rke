@@ -41,7 +41,7 @@ module "edge" {
   name_prefix        = "${var.cluster_name}-edge"
   nodes_count        = var.edge_count
   image_name         = var.image_name
-  flavor_name        = var.worker_flavor_name
+  flavor_name        = var.edge_flavor_name != null ? var.edge_flavor_name : var.worker_flavor_name
   keypair_name       = module.keypair.keypair_name
   network_name       = module.network.nodes_net_name
   secgroup_name      = module.secgroup.secgroup_name
