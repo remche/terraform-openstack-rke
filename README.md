@@ -55,8 +55,8 @@ variable "os_password"{}
   worker_flavor_name  = "m1.small"
   edge_count          = 2
   worker_count        = 1
-  master_labels       = { "node-role.kubernetes.io/master" = "true" }
-  edge_labels         = {"node-role.kubernetes.io/edge" = "true" }
+  master_labels       = {"node-role.kubernetes.io/master" = "true"}
+  edge_labels         = {"node-role.kubernetes.io/edge" = "true"}
   os_auth_url         = var.os_auth_url
   os_password         = var.os_password
 }
