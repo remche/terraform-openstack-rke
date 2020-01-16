@@ -22,7 +22,7 @@ Inspired by [Marco Cappucini](https://github.com/mcapuccini/terraform-openstack-
 ## Examples
 ### Minimal example with master node as egde node and two worker nodes
 
-```
+```hcl
 # Consider using 'export TF_VAR_os_auth_url=$OS_AUTH_URL'
 variable "os_auth_url"{}
 # Consider using 'export TF_VAR_os_password=$OS_AUTH_URL'
@@ -41,7 +41,7 @@ variable "os_password"{}
 
 ###  Minimal example with two egde nodes and two worker nodes
 
-```
+```hcl
 # Consider using 'export TF_VAR_os_auth_url=$OS_AUTH_URL'
 variable "os_auth_url"{}
 # Consider using 'export TF_VAR_os_password=$OS_AUTH_URL'
