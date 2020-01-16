@@ -53,7 +53,7 @@ variable "os_password"{}
   public_net_name     = "public"
   master_flavor_name  = "m1.small"
   worker_flavor_name  = "m1.small"
-  edge_count          = 1
+  edge_count          = 2
   worker_count        = 1
   master_labels       = { "node-role.kubernetes.io/master" = "true" }
   edge_labels         = {"node-role.kubernetes.io/edge" = "true" }
