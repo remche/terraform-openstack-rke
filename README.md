@@ -34,8 +34,8 @@ variable "os_password"{}
   public_net_name     = "public"
   master_flavor_name  = "m1.small"
   worker_flavor_name  = "m1.small"
-  os_auth_url = var.os_auth_url
-  os_password = var.os_password
+  os_auth_url         = var.os_auth_url
+  os_password         = var.os_password
 }
 ```
 
@@ -57,8 +57,8 @@ variable "os_password"{}
   worker_count        = 1
   master_labels       = { "node-role.kubernetes.io/master" = "true" }
   edge_labels         = {"node-role.kubernetes.io/edge" = "true" }
-  os_auth_url = var.os_auth_url
-  os_password = var.os_password
+  os_auth_url         = var.os_auth_url
+  os_password         = var.os_password
 }
 ```
 
