@@ -66,7 +66,7 @@ variable "os_password"{}
 
 See [variables.tf](variables.tf) for all available options, most of them are self-explanatory.
 
-### Secgroup
+### Secgroup
 
 You can define your own rules (e.g. limiting port 22 and 6443 to admin box).
 
@@ -81,4 +81,4 @@ secgroup_rules      = [ { "source" = "x.x.x.x", "protocol" = "tcp", "port" = 22 
 ### Nodes
 
 Default config will deploy one master and two worker nodes. It will use Traefik (nginx not supported in this case).
-You can define edge nodes (see [above][#minimal-example-with-two-egde-nodes-and-one-worker-nodes].
+You can define edge nodes (see [above](#minimal-example-with-two-egde-nodes-and-one-worker-nodes)).
