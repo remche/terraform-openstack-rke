@@ -82,3 +82,24 @@ secgroup_rules      = [ { "source" = "x.x.x.x", "protocol" = "tcp", "port" = 22 
 
 Default config will deploy one master and two worker nodes. It will use Traefik (nginx not supported in this case).
 You can define edge nodes (see [above](#minimal-example-with-two-egde-nodes-and-one-worker-nodes)).
+
+### Usage with [Terraform Kubernetes Provider](https://www.terraform.io/docs/providers/kubernetes/index.html)
+
+You can use this module to populate [Terraform Kubernetes Provider](https://www.terraform.io/docs/providers/kubernetes/index.html) :
+
+```hcl
+provider "kubernetes" {
+  host     = module.rke.rke_cluster.api_server_url
+  username = module.rke.rke_cluster.kube_admin_user
+
+  client_certificate     = module.rke.rke_cluster.client_cert
+  client_key             = module.rke.rke_cluster.client_key
+  cluster_ca_certificate = module.rke.rke_cluster.ca_crt
+}
+
+resource "kubernetes_namespace" "ns" {
+  metadata {
+    name = "my-namespace"
+  }
+}
+```
