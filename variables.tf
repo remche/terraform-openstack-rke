@@ -4,7 +4,7 @@
 
 variable "cluster_name" {
   type        = string
-  default     = "nova-cluster"
+  default     = "rke"
   description = "Name of the cluster"
 }
 
