@@ -168,7 +168,13 @@ variable "storage_types" {
 }
 
 variable "default_storage" {
-  type    = string
-  default = null
+  type        = string
+  default     = null
   description = "Default storage class"
+}
+
+variable "addons_include" {
+  type        = list(string)
+  default     = null
+  description = "RKE YAML files for add-ons"
 }

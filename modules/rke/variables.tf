@@ -68,3 +68,7 @@ variable "storage_types" {
 variable "default_storage" {
   type    = string
 }
+
+variable "addons_include" {
+  type    = list(string)
+}

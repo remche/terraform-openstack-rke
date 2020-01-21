@@ -83,10 +83,12 @@ resource "rke_cluster" "cluster" {
     }
   }
 
-  addons = join("", [templatefile("${path.module}/addons/cinder.yml.tmpl", 
+  addons = join("---\n", [templatefile("${path.module}/addons/cinder.yml.tmpl", 
                                   {types = var.storage_types, default_storage = var.default_storage}),
                      templatefile("${path.module}/addons/traefik2.yml.tmpl",
                                   {deploy = var.deploy_traefik, acme_email = var.acme_email})])
+  
+  addons_include = var.addons_include != null ? [ for addon in var.addons_include: addon ] : null
 
 }
 

@@ -86,4 +86,5 @@ module "rke" {
   acme_email        = var.acme_email
   storage_types     = var.storage_types
   default_storage   = var.default_storage
+  addons_include    = var.addons_include
 }
