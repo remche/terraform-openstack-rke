@@ -14,7 +14,7 @@ Inspired by [Marco Cappucini](https://github.com/mcapuccini/terraform-openstack-
 ## Prerequisites
 
 - [Terraform](https://www.terraform.io/) 0.12+
-- [terraform-provider-rke](https://github.com/rawmind0/terraform-provider-rke) (waiting to be merged upstream).
+- [terraform-provider-rke](https://github.com/rancher/terraform-provider-rke) v1.0.0-beta1+
 - [OpenStack](https://docs.openstack.org/zh_CN/user-guide/common/cli-set-environment-variables-using-openstack-rc.html) environment properly sourced.
 - A Openstack image fullfiling [RKE requirements](https://rancher.com/docs/rke/latest/en/os/).
 - At least one Openstack floating IP.
