@@ -83,6 +83,19 @@ secgroup_rules      = [ { "source" = "x.x.x.x", "protocol" = "tcp", "port" = 22 
 Default config will deploy one master and two worker nodes. It will use Traefik (nginx not supported in this case).
 You can define edge nodes (see [above](#minimal-example-with-two-egde-nodes-and-one-worker-nodes)).
 
+### Cloud provider
+
+The module will deploy [Openstack Cloud Provider](https://rancher.com/docs/rke/latest/en/config-options/cloud-providers/openstack/). 
+It will create the [Kubernetes Storageclasses](https://kubernetes.io/docs/concepts/storage/storage-classes/) for Cinder. If you have many Cinder storage type, you can specify it in [storage_types](variables.tf#L164) variable.
+
+### Reverse Proxy
+
+The module will deploy Traefik by default but you can use nginx-ingress instead. Note that nginx is not supported when master node is the edge node.
+
+### User Add-Ons
+
+You can specify you own [User Add_Ons](https://rancher.com/docs/rke/latest/en/config-options/add-ons/user-defined-add-ons/) with [addons_include](variables.tf#176) variable.
+
 ### Usage with [Terraform Kubernetes Provider](https://www.terraform.io/docs/providers/kubernetes/index.html)
 
 You can use this module to populate [Terraform Kubernetes Provider](https://www.terraform.io/docs/providers/kubernetes/index.html) :
