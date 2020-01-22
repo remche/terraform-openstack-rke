@@ -88,11 +88,11 @@ You can define edge nodes (see [above](#minimal-example-with-two-egde-nodes-and-
 The module will deploy [Openstack Cloud Provider](https://rancher.com/docs/rke/latest/en/config-options/cloud-providers/openstack/). 
 It will create the [Kubernetes Storageclasses](https://kubernetes.io/docs/concepts/storage/storage-classes/) for Cinder. If you have many Cinder storage type, you can specify it in [storage_types](variables.tf#L164) variable.
 
-### Reverse Proxy
+### Reverse Proxy
 
 The module will deploy Traefik by default but you can use nginx-ingress instead. Note that nginx is not supported when master node is the edge node.
 
-### User Add-Ons
+### User Add-Ons
 
 You can specify you own [User Add_Ons](https://rancher.com/docs/rke/latest/en/config-options/add-ons/user-defined-add-ons/) with [addons_include](variables.tf#176) variable.
 
