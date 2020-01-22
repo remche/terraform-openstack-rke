@@ -93,6 +93,13 @@ variable "edge_flavor_name" {
   description = "Edge flavor name. Will use worker_flavor_name if not set"
 }
 
+variable "nodes_config_drive" {
+  type = bool
+  default = "false"
+  description = "Whether to use the config_drive feature to configure the instances"
+}
+
+
 #################
 # RKE variables #
 #################

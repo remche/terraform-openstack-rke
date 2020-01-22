@@ -32,6 +32,7 @@ module "master" {
   network_name       = module.network.nodes_net_name
   secgroup_name      = module.secgroup.secgroup_name
   assign_floating_ip = "true" 
+  config_drive       = var.nodes_config_drive
   floating_ip_pool   = var.public_net_name
 }
 
@@ -46,6 +47,7 @@ module "edge" {
   network_name       = module.network.nodes_net_name
   secgroup_name      = module.secgroup.secgroup_name
   assign_floating_ip = "true" 
+  config_drive       = var.nodes_config_drive
   floating_ip_pool   = var.public_net_name
 }
 
@@ -59,6 +61,7 @@ module "worker" {
   keypair_name     = module.keypair.keypair_name
   network_name     = module.network.nodes_net_name
   secgroup_name    = module.secgroup.secgroup_name
+  config_drive     = var.nodes_config_drive
   floating_ip_pool = var.public_net_name
 }
 
