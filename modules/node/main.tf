@@ -1,11 +1,11 @@
 resource "openstack_compute_instance_v2" "instance" {
-  depends_on  = [var.node_depends_on]
-  count       = var.nodes_count
-  name        = "${var.name_prefix}-${format("%03d", count.index + 1)}"
-  image_name  = var.image_name
-  flavor_name = var.flavor_name
-  key_pair    = var.keypair_name
-
+  depends_on   = [var.node_depends_on]
+  count        = var.nodes_count
+  name         = "${var.name_prefix}-${format("%03d", count.index + 1)}"
+  image_name   = var.image_name
+  flavor_name  = var.flavor_name
+  key_pair     = var.keypair_name
+  config_drive = var.config_drive
   network {
     name = var.network_name
   }

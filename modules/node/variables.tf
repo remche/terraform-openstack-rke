@@ -27,6 +27,10 @@ variable "network_name" {
   type = string
 }
 
+variable "config_drive" {
+  type = bool
+}
+
 variable "secgroup_name" {
   type = string
 }
