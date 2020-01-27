@@ -6,6 +6,8 @@ resource "openstack_compute_instance_v2" "instance" {
   flavor_name  = var.flavor_name
   key_pair     = var.keypair_name
   config_drive = var.config_drive
+  user_data    = var.user_data
+
   network {
     name = var.network_name
   }
@@ -28,6 +30,7 @@ data "null_data_source" "nodes" {
   count       = var.nodes_count
   inputs = {
     name        = openstack_compute_instance_v2.instance[count.index].name
+    id          = openstack_compute_instance_v2.instance[count.index].id
     internal_ip = openstack_compute_instance_v2.instance[count.index].access_ip_v4
     floating_ip = openstack_networking_floatingip_v2.floating_ip != [] ? openstack_networking_floatingip_v2.floating_ip[count.index].address : ""
   }

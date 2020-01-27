@@ -96,6 +96,17 @@ The module will deploy Traefik by default but you can use nginx-ingress instead.
 
 You can specify you own [User Add_Ons](https://rancher.com/docs/rke/latest/en/config-options/add-ons/user-defined-add-ons/) with [addons_include](variables.tf#176) variable.
 
+### Usage with [RancherOS](https://rancher.com/rancher-os/)
+
+RancherOS **needs** a node config drive to be configured. You can also provide a cloud config file :
+
+```hcl
+image_name          = "rancheros-1.5.5-x86_64"
+system_user         = "rancher"
+nodes_config_drive  = "true"
+user_data_file      = "rancher.yml"
+```
+
 ### Usage with [Terraform Kubernetes Provider](https://www.terraform.io/docs/providers/kubernetes/index.html)
 
 You can use this module to populate [Terraform Kubernetes Provider](https://www.terraform.io/docs/providers/kubernetes/index.html) :
