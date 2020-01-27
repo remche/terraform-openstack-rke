@@ -94,9 +94,15 @@ variable "edge_flavor_name" {
 }
 
 variable "nodes_config_drive" {
-  type = bool
-  default = "false"
+  type        = bool
+  default     = "false"
   description = "Whether to use the config_drive feature to configure the instances"
+}
+
+variable "user_data_file" {
+  type        = string
+  default     = null
+  description = "User data file to provide when launching the instance"
 }
 
 
