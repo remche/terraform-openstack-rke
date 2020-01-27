@@ -1,5 +1,8 @@
 resource "null_resource" "wait_for_master_ssh" {
   count = length(var.master_nodes)
+  triggers  = {
+    node_instance_id = var.master_nodes[count.index].id
+  }  
   connection {
     host        = var.master_nodes[count.index].floating_ip
     user        = var.system_user
@@ -13,6 +16,9 @@ resource "null_resource" "wait_for_master_ssh" {
 
 resource "null_resource" "wait_for_edge_ssh" {
   count = length(var.edge_nodes)
+  triggers  = {
+    node_instance_id = var.edge_nodes[count.index].id
+  }  
   connection {
     host         = var.edge_nodes[count.index].floating_ip
     user         = var.system_user
@@ -26,12 +32,15 @@ resource "null_resource" "wait_for_edge_ssh" {
 
 resource "null_resource" "wait_for_worker_ssh" {
   count = length(var.worker_nodes)
+  triggers  = {
+    node_instance_id = var.worker_nodes[count.index].id
+  }  
   connection {
     bastion_host = var.bastion_host
     host         = var.worker_nodes[count.index].internal_ip
     user         = var.system_user
     private_key  = var.use_ssh_agent ? null : file(var.ssh_key_file)
-    agent        =  var.use_ssh_agent
+    agent        = var.use_ssh_agent
   }
   provisioner "remote-exec" {
     inline = ["# Connected to ${var.worker_nodes[count.index].name}"]
