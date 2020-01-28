@@ -31,7 +31,7 @@ module "master" {
   keypair_name       = module.keypair.keypair_name
   network_name       = module.network.nodes_net_name
   secgroup_name      = module.secgroup.secgroup_name
-  assign_floating_ip = "true" 
+  assign_floating_ip = "true"
   config_drive       = var.nodes_config_drive
   floating_ip_pool   = var.public_net_name
   user_data          = var.user_data_file != null ? file(var.user_data_file) : null
@@ -47,7 +47,7 @@ module "edge" {
   keypair_name       = module.keypair.keypair_name
   network_name       = module.network.nodes_net_name
   secgroup_name      = module.secgroup.secgroup_name
-  assign_floating_ip = "true" 
+  assign_floating_ip = "true"
   config_drive       = var.nodes_config_drive
   floating_ip_pool   = var.public_net_name
   user_data          = var.user_data_file != null ? file(var.user_data_file) : null
@@ -69,28 +69,28 @@ module "worker" {
 }
 
 module "rke" {
-  source            = "./modules/rke"
-  rke_depends_on    = [module.master.associate_floating_ip,
-                       module.edge.associate_floating_ip, 
-                       module.worker.associate_floating_ip,
-                       module.network.router_interface,
-                       module.secgroup.secgroup_rules]
-  master_nodes      = module.master.nodes
-  worker_nodes      = module.worker.nodes
-  edge_nodes        = module.edge.nodes
-  system_user       = var.system_user
-  ssh_key_file      = var.ssh_key_file
-  use_ssh_agent     = var.use_ssh_agent
-  bastion_host      = var.bastion_host != null ? var.bastion_host : module.master.nodes[0].floating_ip
-  os_auth_url       = var.os_auth_url
-  os_password       = var.os_password
-  master_labels     = var.master_labels
-  edge_labels       = var.edge_labels
-  worker_labels     = var.worker_labels
-  deploy_traefik    = var.deploy_traefik
-  deploy_nginx      = var.deploy_nginx
-  acme_email        = var.acme_email
-  storage_types     = var.storage_types
-  default_storage   = var.default_storage
-  addons_include    = var.addons_include
+  source = "./modules/rke"
+  rke_depends_on = [module.master.associate_floating_ip,
+    module.edge.associate_floating_ip,
+    module.worker.associate_floating_ip,
+    module.network.router_interface,
+  module.secgroup.secgroup_rules]
+  master_nodes    = module.master.nodes
+  worker_nodes    = module.worker.nodes
+  edge_nodes      = module.edge.nodes
+  system_user     = var.system_user
+  ssh_key_file    = var.ssh_key_file
+  use_ssh_agent   = var.use_ssh_agent
+  bastion_host    = var.bastion_host != null ? var.bastion_host : module.master.nodes[0].floating_ip
+  os_auth_url     = var.os_auth_url
+  os_password     = var.os_password
+  master_labels   = var.master_labels
+  edge_labels     = var.edge_labels
+  worker_labels   = var.worker_labels
+  deploy_traefik  = var.deploy_traefik
+  deploy_nginx    = var.deploy_nginx
+  acme_email      = var.acme_email
+  storage_types   = var.storage_types
+  default_storage = var.default_storage
+  addons_include  = var.addons_include
 }
