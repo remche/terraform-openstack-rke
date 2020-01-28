@@ -30,7 +30,7 @@ install:
   - travis_retry curl -L
     "https://github.com/rancher/terraform-provider-rke/releases/download/${TERRAFORM_PROVIDER_RKE_VERSION}/terraform-provider-rke_linux-amd64"
     -o "$HOME/.terraform.d/plugins/terraform-provider-rke"
-  - ls "$HOME/.terraform.d/plugins"
+  - chmod +x "$HOME/.terraform.d/plugins/terraform-provider-rke"
     # Configure SSH key
   - ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa
   - eval "$(ssh-agent -s)"
