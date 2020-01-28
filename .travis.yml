@@ -1,0 +1,57 @@
+---
+language: python
+
+branches:
+  only:
+    - master
+
+env:
+  global:
+    # Software versions
+    - TERRAFORM_VERSION=0.12.20
+    - TERRAFORM_PROVIDER_RKE_VERSION=1.0.0-rc1
+    # OpenStack environment
+    - TF_VAR_public_net_name="public"
+    - TF_VAR_image_name="ubuntu-18.04-docker-x86_64"
+    - TF_VAR_master_flavor_name="m1.small"
+    - TF_VAR_worker_flavor_name="m1.small"
+    # Single master
+    - TF_VAR_master_count=1
+      TF_VAR_worker_count=1
+
+install:
+  - travis_retry curl -L
+    "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+    -o /tmp/terraform.zip
+  - sudo unzip /tmp/terraform.zip -d /usr/local/bin
+  - sudo chmod +x /usr/local/bin/terraform
+  # Install terraform-provider-rke
+  - mkdir -p "$HOME/.terraform.d/plugins/"
+  - travis_retry curl -L
+    "https://github.com/yrancher/terraform-provider-rke/releases/download/${TERRAFORM_PROVIDER_RKE_VERSION}/terraform-provider-rke_linux-amd64"
+    -o $HOME/.terraform.d/plugins/terraform-provider-rke_linux-amd64
+    # Configure SSH key
+  - ssh-keygen -t rsa -N ''
+  - eval "$(ssh-agent -s)"
+  - ssh-add
+
+before_script:
+  # Terraform init, validate, and format check
+  - terraform init
+  - terraform validate
+  - terraform fmt -check=true -diff
+
+script:
+  # Deploy
+  - terraform apply -auto-approve # this also runs sanity checks
+  # Scale up
+  - export TF_VAR_worker_count=$((TF_VAR_worker_count+1))
+  - terraform apply -auto-approve # this also runs sanity checks
+  # Scale down
+  - export TF_VAR_worker_count=$((TF_VAR_worker_count-1))
+  - terraform apply -auto-approve # this also runs sanity checks
+
+after_script:
+  # Destroy
+  - terraform destroy -force
+
