@@ -31,7 +31,7 @@ install:
     "https://github.com/yrancher/terraform-provider-rke/releases/download/${TERRAFORM_PROVIDER_RKE_VERSION}/terraform-provider-rke_linux-amd64"
     -o $HOME/.terraform.d/plugins/terraform-provider-rke_linux-amd64
     # Configure SSH key
-  - ssh-keygen -t rsa -N ''
+  - ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa
   - eval "$(ssh-agent -s)"
   - ssh-add
 
