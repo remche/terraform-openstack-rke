@@ -65,7 +65,7 @@ module "worker" {
   secgroup_name    = module.secgroup.secgroup_name
   config_drive     = var.nodes_config_drive
   floating_ip_pool = var.public_net_name
-  user_data          = var.user_data_file != null ? file(var.user_data_file) : null
+  user_data        = var.user_data_file != null ? file(var.user_data_file) : null
 }
 
 module "rke" {
