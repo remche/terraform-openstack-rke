@@ -28,7 +28,7 @@ install:
   # Install terraform-provider-rke
   - mkdir -p "$HOME/.terraform.d/plugins/"
   - travis_retry curl -L
-    "https://github.com/yrancher/terraform-provider-rke/releases/download/${TERRAFORM_PROVIDER_RKE_VERSION}/terraform-provider-rke_linux-amd64"
+    "https://github.com/rancher/terraform-provider-rke/releases/download/${TERRAFORM_PROVIDER_RKE_VERSION}/terraform-provider-rke_linux-amd64"
     -o $HOME/.terraform.d/plugins/terraform-provider-rke_linux-amd64
     # Configure SSH key
   - ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa
