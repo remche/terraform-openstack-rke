@@ -8,6 +8,12 @@ variable "cluster_name" {
   description = "Name of the cluster"
 }
 
+variable "ssh_keypair_name" {
+  type        = string
+  default     = null
+  description = "SSH keypair name"
+}
+
 variable "ssh_key_file" {
   type        = string
   default     = "~/.ssh/id_rsa"
