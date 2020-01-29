@@ -1,6 +1,7 @@
 # terraform-openstack-rke
 
 [![Terraform Registry](https://img.shields.io/badge/terraform-registry-blue.svg)](https://registry.terraform.io/modules/remche/rke/openstack)
+[![Build Status](https://travis-ci.com/remche/terraform-openstack-rke.svg?branch=master)](https://travis-ci.com/remche/terraform-openstack-rke)
 
 [Terraform](https://www.terraform.io/) module to deploy [Kubernetes](https://kubernetes.io) with [RKE](https://rancher.com/docs/rke/latest/en/) on [OpenStack](https://www.openstack.org/).
 
@@ -65,6 +66,10 @@ variable "os_password"{}
 ## Documentation
 
 See [variables.tf](variables.tf) for all available options, most of them are self-explanatory.
+
+### Keypair
+
+You can either define ssh key file to generate a new keypair via ssh\_key\_file (default) or specify a already existent keypair via ssh\_keypair\_name.
 
 ### Secgroup
 

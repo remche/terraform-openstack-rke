@@ -8,6 +8,12 @@ variable "cluster_name" {
   description = "Name of the cluster"
 }
 
+variable "ssh_keypair_name" {
+  type        = string
+  default     = null
+  description = "SSH keypair name"
+}
+
 variable "ssh_key_file" {
   type        = string
   default     = "~/.ssh/id_rsa"
@@ -19,12 +25,12 @@ variable "ssh_key_file" {
 ######################
 
 variable secgroup_rules {
-  type        = list
-  default     = [ { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 22 },
-                  { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 6443 },
-                  { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 80 },
-                  { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 443}
-                ]
+  type = list
+  default = [{ "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 22 },
+    { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 6443 },
+    { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 80 },
+    { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 443 }
+  ]
   description = "Security group rules"
 }
 
@@ -55,7 +61,7 @@ variable "dns_servers" {
 
 variable "image_name" {
   type        = string
-  description = "Name of image nodes (must fullfill RKE requirements)" 
+  description = "Name of image nodes (must fullfill RKE requirements)"
 }
 
 variable "master_count" {
@@ -65,14 +71,14 @@ variable "master_count" {
 }
 
 variable "edge_count" {
-  type    = number
-  default = 0
+  type        = number
+  default     = 0
   description = "Number of edge nodes"
 }
 
 variable "worker_count" {
-  type    = number
-  default = 2
+  type        = number
+  default     = 2
   description = "Number of woker nodes"
 }
 
@@ -88,8 +94,8 @@ variable "worker_flavor_name" {
 }
 
 variable "edge_flavor_name" {
-  type    = string
-  default = null
+  type        = string
+  default     = null
   description = "Edge flavor name. Will use worker_flavor_name if not set"
 }
 
@@ -111,7 +117,7 @@ variable "user_data_file" {
 #################
 
 variable "system_user" {
-  type	      = string
+  type        = string
   default     = "ubuntu"
   description = "Default OS image user"
 }
@@ -152,7 +158,7 @@ variable "worker_labels" {
 
 variable "edge_labels" {
   type        = map(string)
-  default     = {"node-role.kubernetes.io/worker" = "true" }
+  default     = { "node-role.kubernetes.io/worker" = "true" }
   description = "Edge labels. Ingress controller will run on nodes with egde label"
 }
 
