@@ -39,6 +39,7 @@ before_script:
   - terraform fmt -check=true -diff
 
 script:
+  - set -o pipefail
   - terraform apply -auto-approve | grep -v remote-exec
   - export TF_VAR_worker_count=$((TF_VAR_worker_count+1))
   - terraform apply -auto-approve | grep -v remote-exec
