@@ -16,7 +16,7 @@ env:
     - TF_VAR_worker_flavor_name="m1.small"
   jobs:
     - TF_VAR_master_count=1
-    - TF_VAR_worker_count=1
+      TF_VAR_worker_count=1
 
 install:
   - travis_retry curl -L
