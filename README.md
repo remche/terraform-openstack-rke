@@ -66,6 +66,10 @@ variable "os_password"{}
 
 See [variables.tf](variables.tf) for all available options, most of them are self-explanatory.
 
+### Keypair
+
+You can either define ssh key file to generate a new keypair via ssh\_key\_file (default) or specify a already existent keypair via ssh\_keypair\_name.
+
 ### Secgroup
 
 You can define your own rules (e.g. limiting port 22 and 6443 to admin box).
