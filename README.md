@@ -1,7 +1,6 @@
 # terraform-openstack-rke
 
 [![Terraform Registry](https://img.shields.io/badge/terraform-registry-blue.svg)](https://registry.terraform.io/modules/remche/rke/openstack)
-[![Build Status](https://travis-ci.com/remche/terraform-openstack-rke.svg?branch=master)](https://travis-ci.com/remche/terraform-openstack-rke)
 
 [Terraform](https://www.terraform.io/) module to deploy [Kubernetes](https://kubernetes.io) with [RKE](https://rancher.com/docs/rke/latest/en/) on [OpenStack](https://www.openstack.org/).
 
