@@ -46,6 +46,6 @@ script:
   - export TF_VAR_worker_count=$((TF_VAR_worker_count-1))
   - terraform apply -auto-approve | grep -v remote-exec
 
-    #after_script:
-    #- terraform destroy -force
+after_script:
+  - terraform destroy -force
 
