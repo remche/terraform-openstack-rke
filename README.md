@@ -69,7 +69,7 @@ See [variables.tf](variables.tf) for all available options, most of them are sel
 
 ### Keypair
 
-You can either define ssh key file to generate a new keypair via ssh\_key\_file (default) or specify a already existent keypair via ssh\_keypair\_name.
+You can either specify a ssh key file to generate a new keypair via `ssh_key_file` (default) or specify a already existent keypair via `ssh_keypair_name`.
 
 ### Secgroup
 
