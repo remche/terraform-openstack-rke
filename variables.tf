@@ -162,6 +162,12 @@ variable "edge_labels" {
   description = "Edge labels. Ingress controller will run on nodes with egde label"
 }
 
+variable "kubernetes_version" {
+  type        = string
+  default     = null
+  description = "Kubernetes version (RKE)"
+}
+
 variable "deploy_traefik" {
   type        = bool
   default     = "true"

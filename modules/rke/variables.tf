@@ -49,6 +49,10 @@ variable "edge_labels" {
   type    = map(string)
 }
 
+variable "k8s_version" {
+  type    = string
+}
+
 variable "deploy_traefik" {
   type    = bool
 }

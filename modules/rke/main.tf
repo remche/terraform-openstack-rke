@@ -103,6 +103,8 @@ resource "rke_cluster" "cluster" {
 
   ssh_agent_auth = var.use_ssh_agent
 
+  kubernetes_version = var.k8s_version
+
   ingress {
     provider = var.deploy_nginx ? "nginx" : "none"
     node_selector = { "node-role.kubernetes.io/edge" = "true"  }
