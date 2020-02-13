@@ -9,7 +9,7 @@ env:
   global:
     # Software versions
     - TERRAFORM_VERSION=0.12.20
-    - TERRAFORM_PROVIDER_RKE_VERSION=1.0.0-rc1
+    - TERRAFORM_PROVIDER_RKE_VERSION=1.0.0-rc2
     - TF_VAR_public_net_name="public"
     - TF_VAR_image_name="ubuntu-18.04-docker-x86_64"
     - TF_VAR_master_flavor_name="m1.small"
