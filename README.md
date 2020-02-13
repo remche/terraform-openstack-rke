@@ -88,6 +88,10 @@ secgroup_rules      = [ { "source" = "x.x.x.x", "protocol" = "tcp", "port" = 22 
 Default config will deploy one master and two worker nodes. It will use Traefik (nginx not supported in this case).
 You can define edge nodes (see [above](#minimal-example-with-two-egde-nodes-and-one-worker-nodes)).
 
+### Kubernetes version
+
+You can specify kubernetes version with `kubernetes_version` variables. Refer to RKE supported version.
+
 ### Cloud provider
 
 The module will deploy [Openstack Cloud Provider](https://rancher.com/docs/rke/latest/en/config-options/cloud-providers/openstack/). 
