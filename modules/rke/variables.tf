@@ -53,6 +53,11 @@ variable "k8s_version" {
   type    = string
 }
 
+variable "mtu" {
+  type    = number
+  default = 0
+}
+
 variable "deploy_traefik" {
   type    = bool
 }
