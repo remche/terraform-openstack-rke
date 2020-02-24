@@ -168,6 +168,12 @@ variable "kubernetes_version" {
   description = "Kubernetes version (RKE)"
 }
 
+variable "cni_mtu" {
+  type        = number
+  default     = 0
+  description = "CNI MTU"
+}
+
 variable "deploy_traefik" {
   type        = bool
   default     = "true"

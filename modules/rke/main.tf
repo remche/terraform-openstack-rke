@@ -105,6 +105,10 @@ resource "rke_cluster" "cluster" {
 
   kubernetes_version = var.k8s_version
 
+  network {
+    mtu = var.mtu
+  }
+
   ingress {
     provider = var.deploy_nginx ? "nginx" : "none"
     node_selector = { "node-role.kubernetes.io/edge" = "true"  }

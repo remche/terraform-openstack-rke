@@ -89,6 +89,7 @@ module "rke" {
   edge_labels     = var.edge_labels
   worker_labels   = var.worker_labels
   k8s_version     = var.kubernetes_version
+  mtu             = var.cni_mtu
   deploy_traefik  = var.deploy_traefik
   deploy_nginx    = var.deploy_nginx
   acme_email      = var.acme_email
