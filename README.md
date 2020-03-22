@@ -26,7 +26,7 @@ Inspired by [Marco Cappucini](https://github.com/mcapuccini/terraform-openstack-
 ```hcl
 # Consider using 'export TF_VAR_os_auth_url=$OS_AUTH_URL'
 variable "os_auth_url"{}
-# Consider using 'export TF_VAR_os_password=$OS_AUTH_URL'
+# Consider using 'export TF_VAR_os_password=$OS_PASSWORD'
 variable "os_password"{}
 
  module "rke" {
@@ -45,7 +45,7 @@ variable "os_password"{}
 ```hcl
 # Consider using 'export TF_VAR_os_auth_url=$OS_AUTH_URL'
 variable "os_auth_url"{}
-# Consider using 'export TF_VAR_os_password=$OS_AUTH_URL'
+# Consider using 'export TF_VAR_os_password=$OS_PASSWORD'
 variable "os_password"{}
 
  module "rke" {
