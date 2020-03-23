@@ -64,7 +64,6 @@ resource "rke_cluster" "cluster" {
       hostname_override = nodes.value.name
       user              = var.system_user
       role              = ["controlplane", "etcd"]
-      ssh_key           = file(var.ssh_key_file)
       labels            = var.master_labels
     }
   }
@@ -77,7 +76,6 @@ resource "rke_cluster" "cluster" {
       hostname_override = nodes.value.name
       user              = var.system_user
       role              = ["worker"]
-      ssh_key           = file(var.ssh_key_file)
       labels            = var.edge_labels
     }
   }
@@ -90,7 +88,6 @@ resource "rke_cluster" "cluster" {
       hostname_override = nodes.value.name
       user              = var.system_user
       role              = ["worker"]
-      ssh_key           = file(var.ssh_key_file)
       labels            = var.worker_labels
     }
   }
@@ -98,10 +95,10 @@ resource "rke_cluster" "cluster" {
   bastion_host {
     address      = var.bastion_host
     user         = var.system_user
-    ssh_key_path = file(var.ssh_key_file)
   }
 
   ssh_agent_auth = var.use_ssh_agent
+  ssh_key_path   = var.ssh_key_file
 
   kubernetes_version = var.k8s_version
 
