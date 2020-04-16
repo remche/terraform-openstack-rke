@@ -174,6 +174,12 @@ variable "cni_mtu" {
   description = "CNI MTU"
 }
 
+variable "cloud_provider" {
+  type        = bool
+  default     = "true"
+  description = "Deploy cloud provider"
+}
+
 variable "deploy_traefik" {
   type        = bool
   default     = "true"
