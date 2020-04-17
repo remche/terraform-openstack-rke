@@ -111,21 +111,24 @@ resource "rke_cluster" "cluster" {
     node_selector = { "node-role.kubernetes.io/edge" = "true"  }
   }
 
-  cloud_provider {
-    name = "openstack"
-    openstack_cloud_provider {
-      global {
-        username    = data.openstack_identity_auth_scope_v3.scope.user_name
-        password    = var.os_password
-        auth_url    = var.os_auth_url
-        tenant_id   = data.openstack_identity_auth_scope_v3.scope.project_id
-        domain_id = data.openstack_identity_auth_scope_v3.scope.project_domain_id
+  dynamic cloud_provider {
+    for_each = var.cloud_provider ? [1] : []
+    content {
+      name = "openstack"
+      openstack_cloud_provider {
+        global {
+          username    = data.openstack_identity_auth_scope_v3.scope.user_name
+          password    = var.os_password
+          auth_url    = var.os_auth_url
+          tenant_id   = data.openstack_identity_auth_scope_v3.scope.project_id
+          domain_id = data.openstack_identity_auth_scope_v3.scope.project_domain_id
+        }
       }
     }
-  }
+  }  
 
   addons = join("---\n", [templatefile("${path.module}/addons/cinder.yml.tmpl", 
-                                  {types = var.storage_types, default_storage = var.default_storage}),
+                                  {deploy = var.cloud_provider, types = var.storage_types, default_storage = var.default_storage}),
                      templatefile("${path.module}/addons/traefik2.yml.tmpl",
                                   {deploy = var.deploy_traefik, acme_email = var.acme_email})])
   

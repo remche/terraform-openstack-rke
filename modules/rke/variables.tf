@@ -58,6 +58,9 @@ variable "mtu" {
   default = 0
 }
 
+variable "cloud_provider" {
+  type    = bool
+}
 variable "deploy_traefik" {
   type    = bool
 }
