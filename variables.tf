@@ -99,6 +99,24 @@ variable "edge_flavor_name" {
   description = "Edge flavor name. Will use worker_flavor_name if not set"
 }
 
+variable "master_server_affinity" {
+  type        = string
+  default     = "soft-anti-affinity"
+  description = "Master server group affinity"
+}
+
+variable "worker_server_affinity" {
+  type        = string
+  default     = "soft-anti-affinity"
+  description = "Worker server group affinity"
+}
+
+variable "edge_server_affinity" {
+  type        = string
+  default     = "soft-anti-affinity"
+  description = "Edge server group affinity"
+}
+
 variable "nodes_config_drive" {
   type        = bool
   default     = "false"

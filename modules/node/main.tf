@@ -1,3 +1,8 @@
+resource "openstack_compute_servergroup_v2" "servergroup" {
+  name     = "${var.name_prefix}-servergroup"
+  policies = [var.server_affinity]
+}
+
 resource "openstack_compute_instance_v2" "instance" {
   depends_on   = [var.node_depends_on]
   count        = var.nodes_count
@@ -13,6 +18,10 @@ resource "openstack_compute_instance_v2" "instance" {
   }
 
   security_groups = [var.secgroup_name]
+
+  scheduler_hints {
+    group = openstack_compute_servergroup_v2.servergroup.id
+  }
 }
 
 resource "openstack_networking_floatingip_v2" "floating_ip" {
@@ -27,7 +36,7 @@ resource "openstack_compute_floatingip_associate_v2" "associate_floating_ip" {
 }
 
 data "null_data_source" "nodes" {
-  count       = var.nodes_count
+  count = var.nodes_count
   inputs = {
     name        = openstack_compute_instance_v2.instance[count.index].name
     id          = openstack_compute_instance_v2.instance[count.index].id
