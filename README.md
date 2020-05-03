@@ -88,6 +88,8 @@ secgroup_rules      = [ { "source" = "x.x.x.x", "protocol" = "tcp", "port" = 22 
 Default config will deploy one master and two worker nodes. It will use Traefik (nginx not supported in this case).
 You can define edge nodes (see [above](#minimal-example-with-two-egde-nodes-and-one-worker-nodes)).
 
+You can set [affinity policy](https://www.terraform.io/docs/providers/openstack/r/compute_servergroup_v2.html#policies) for each nodes group (master, worker, edge) via `{master,worker,edge}_server_affinity`. Default is `soft-anti-affinity`.
+
 ### Kubernetes version
 
 You can specify kubernetes version with `kubernetes_version` variables. Refer to RKE supported version.

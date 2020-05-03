@@ -31,12 +31,16 @@ variable "config_drive" {
   type = bool
 }
 
+variable "server_affinity" {
+  type = string
+}
+
 variable "secgroup_name" {
   type = string
 }
 
 variable "assign_floating_ip" {
-  type = bool
+  type    = bool
   default = "false"
 }
 
@@ -46,5 +50,5 @@ variable "floating_ip_pool" {
 }
 
 variable "user_data" {
-  type    = string
+  type = string
 }

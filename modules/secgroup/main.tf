@@ -18,7 +18,7 @@ resource "openstack_networking_secgroup_rule_v2" "tunnel_rule" {
 }
 
 resource "openstack_networking_secgroup_rule_v2" "rules" {
-  count = length(var.rules)
+  count             = length(var.rules)
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = var.rules[count.index].protocol
