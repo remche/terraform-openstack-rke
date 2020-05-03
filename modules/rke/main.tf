@@ -1,8 +1,8 @@
 resource "null_resource" "wait_for_master_ssh" {
   count = length(var.master_nodes)
-  triggers  = {
+  triggers = {
     node_instance_id = var.master_nodes[count.index].id
-  }  
+  }
   connection {
     host        = var.master_nodes[count.index].floating_ip
     user        = var.system_user
@@ -16,14 +16,14 @@ resource "null_resource" "wait_for_master_ssh" {
 
 resource "null_resource" "wait_for_edge_ssh" {
   count = length(var.edge_nodes)
-  triggers  = {
+  triggers = {
     node_instance_id = var.edge_nodes[count.index].id
-  }  
+  }
   connection {
-    host         = var.edge_nodes[count.index].floating_ip
-    user         = var.system_user
-    private_key  = var.use_ssh_agent ? null : file(var.ssh_key_file)
-    agent        = var.use_ssh_agent
+    host        = var.edge_nodes[count.index].floating_ip
+    user        = var.system_user
+    private_key = var.use_ssh_agent ? null : file(var.ssh_key_file)
+    agent       = var.use_ssh_agent
   }
   provisioner "remote-exec" {
     inline = ["# Connected to ${var.edge_nodes[count.index].name}"]
@@ -32,9 +32,9 @@ resource "null_resource" "wait_for_edge_ssh" {
 
 resource "null_resource" "wait_for_worker_ssh" {
   count = length(var.worker_nodes)
-  triggers  = {
+  triggers = {
     node_instance_id = var.worker_nodes[count.index].id
-  }  
+  }
   connection {
     bastion_host = var.bastion_host
     host         = var.worker_nodes[count.index].internal_ip
@@ -53,8 +53,8 @@ data "openstack_identity_auth_scope_v3" "scope" {
 
 resource "rke_cluster" "cluster" {
 
-  depends_on = [var.rke_depends_on, null_resource.wait_for_master_ssh, 
-                null_resource.wait_for_edge_ssh, null_resource.wait_for_worker_ssh]
+  depends_on = [var.rke_depends_on, null_resource.wait_for_master_ssh,
+  null_resource.wait_for_edge_ssh, null_resource.wait_for_worker_ssh]
 
   dynamic nodes {
     for_each = var.master_nodes
@@ -93,8 +93,8 @@ resource "rke_cluster" "cluster" {
   }
 
   bastion_host {
-    address      = var.bastion_host
-    user         = var.system_user
+    address = var.bastion_host
+    user    = var.system_user
   }
 
   ssh_agent_auth = var.use_ssh_agent
@@ -107,8 +107,8 @@ resource "rke_cluster" "cluster" {
   }
 
   ingress {
-    provider = var.deploy_nginx ? "nginx" : "none"
-    node_selector = { "node-role.kubernetes.io/edge" = "true"  }
+    provider      = var.deploy_nginx ? "nginx" : "none"
+    node_selector = { "node-role.kubernetes.io/edge" = "true" }
   }
 
   dynamic cloud_provider {
@@ -117,22 +117,22 @@ resource "rke_cluster" "cluster" {
       name = "openstack"
       openstack_cloud_provider {
         global {
-          username    = data.openstack_identity_auth_scope_v3.scope.user_name
-          password    = var.os_password
-          auth_url    = var.os_auth_url
-          tenant_id   = data.openstack_identity_auth_scope_v3.scope.project_id
+          username  = data.openstack_identity_auth_scope_v3.scope.user_name
+          password  = var.os_password
+          auth_url  = var.os_auth_url
+          tenant_id = data.openstack_identity_auth_scope_v3.scope.project_id
           domain_id = data.openstack_identity_auth_scope_v3.scope.project_domain_id
         }
       }
     }
-  }  
+  }
 
-  addons = join("---\n", [templatefile("${path.module}/addons/cinder.yml.tmpl", 
-                                  {deploy = var.cloud_provider, types = var.storage_types, default_storage = var.default_storage}),
-                     templatefile("${path.module}/addons/traefik2.yml.tmpl",
-                                  {deploy = var.deploy_traefik, acme_email = var.acme_email})])
-  
-  addons_include = var.addons_include != null ? [ for addon in var.addons_include: addon ] : null
+  addons = join("---\n", [templatefile("${path.module}/addons/cinder.yml.tmpl",
+    { deploy = var.cloud_provider, types = var.storage_types, default_storage = var.default_storage }),
+    templatefile("${path.module}/addons/traefik2.yml.tmpl",
+  { deploy = var.deploy_traefik, acme_email = var.acme_email })])
+
+  addons_include = var.addons_include != null ? [for addon in var.addons_include : addon] : null
 
 }
 

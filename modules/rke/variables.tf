@@ -26,31 +26,31 @@ variable "use_ssh_agent" {
 }
 
 variable "bastion_host" {
-  type    = string
+  type = string
 }
 
 variable "os_auth_url" {
-  type    = string
+  type = string
 }
 
 variable "os_password" {
-  type    = string
+  type = string
 }
 
 variable "master_labels" {
-  type    = map(string)
+  type = map(string)
 }
 
 variable "worker_labels" {
-  type    = map(string)
+  type = map(string)
 }
 
 variable "edge_labels" {
-  type    = map(string)
+  type = map(string)
 }
 
 variable "k8s_version" {
-  type    = string
+  type = string
 }
 
 variable "mtu" {
@@ -59,28 +59,28 @@ variable "mtu" {
 }
 
 variable "cloud_provider" {
-  type    = bool
+  type = bool
 }
 variable "deploy_traefik" {
-  type    = bool
+  type = bool
 }
 
 variable "deploy_nginx" {
-  type    = bool
+  type = bool
 }
 
 variable "acme_email" {
-  type    = string
+  type = string
 }
 
 variable "storage_types" {
-  type    = list(string)
+  type = list(string)
 }
 
 variable "default_storage" {
-  type    = string
+  type = string
 }
 
 variable "addons_include" {
-  type    = list(string)
+  type = list(string)
 }
