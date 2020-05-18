@@ -130,10 +130,9 @@ resource "rke_cluster" "cluster" {
   addons = join("---\n", [templatefile("${path.module}/addons/cinder.yml.tmpl",
     { deploy = var.cloud_provider, types = var.storage_types, default_storage = var.default_storage }),
     templatefile("${path.module}/addons/traefik2.yml.tmpl",
-  { deploy = var.deploy_traefik, acme_email = var.acme_email })])
+  { deploy = var.deploy_traefik, acme_email = var.acme_email, image_tag = var.traefik_image_tag })])
 
   addons_include = var.addons_include != null ? [for addon in var.addons_include : addon] : null
-
 }
 
 resource "local_file" "kube_cluster_yaml" {

@@ -61,8 +61,13 @@ variable "mtu" {
 variable "cloud_provider" {
   type = bool
 }
+
 variable "deploy_traefik" {
   type = bool
+}
+
+variable "traefik_image_tag" {
+  type = string
 }
 
 variable "deploy_nginx" {

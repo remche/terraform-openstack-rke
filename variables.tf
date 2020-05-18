@@ -204,6 +204,12 @@ variable "deploy_traefik" {
   description = "Whether to deploy traefik. Mandatory if no edge nodes"
 }
 
+variable "traefik_image_tag" {
+  type        = string
+  default     = "latest"
+  description = "Traefik version"
+}
+
 variable "deploy_nginx" {
   type        = bool
   default     = "false"
