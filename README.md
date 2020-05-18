@@ -5,7 +5,7 @@
 
 [Terraform](https://www.terraform.io/) module to deploy [Kubernetes](https://kubernetes.io) with [RKE](https://rancher.com/docs/rke/latest/en/) on [OpenStack](https://www.openstack.org/).
 
-Inspired by [Marco Cappucini](https://github.com/mcapuccini/terraform-openstack-rke) work, rewritten from scratch for Terraform 0.12+ and new [terraform-rke-provider](https://github.com/rancher/terraform-provider-rke).
+Inspired by [Marco Capuccini](https://github.com/mcapuccini/terraform-openstack-rke) work, rewritten from scratch for Terraform 0.12+ and new [terraform-rke-provider](https://github.com/rancher/terraform-provider-rke).
 
 ## Table of contents
 - [Prerequisites](#prerequisites)
