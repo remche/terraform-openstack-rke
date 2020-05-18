@@ -67,7 +67,7 @@ variable "deploy_traefik" {
 }
 
 variable "traefik_image_tag" {
-  type    = string
+  type = string
 }
 
 variable "deploy_nginx" {
