@@ -79,25 +79,26 @@ module "rke" {
     module.worker.associate_floating_ip,
     module.network.router_interface,
   module.secgroup.secgroup_rules]
-  master_nodes    = module.master.nodes
-  worker_nodes    = module.worker.nodes
-  edge_nodes      = module.edge.nodes
-  system_user     = var.system_user
-  ssh_key_file    = var.ssh_key_file
-  use_ssh_agent   = var.use_ssh_agent
-  bastion_host    = var.bastion_host != null ? var.bastion_host : module.master.nodes[0].floating_ip
-  os_auth_url     = var.os_auth_url
-  os_password     = var.os_password
-  master_labels   = var.master_labels
-  edge_labels     = var.edge_labels
-  worker_labels   = var.worker_labels
-  k8s_version     = var.kubernetes_version
-  mtu             = var.cni_mtu
-  cloud_provider  = var.cloud_provider
-  deploy_traefik  = var.deploy_traefik
-  deploy_nginx    = var.deploy_nginx
-  acme_email      = var.acme_email
-  storage_types   = var.storage_types
-  default_storage = var.default_storage
-  addons_include  = var.addons_include
+  master_nodes      = module.master.nodes
+  worker_nodes      = module.worker.nodes
+  edge_nodes        = module.edge.nodes
+  system_user       = var.system_user
+  ssh_key_file      = var.ssh_key_file
+  use_ssh_agent     = var.use_ssh_agent
+  bastion_host      = var.bastion_host != null ? var.bastion_host : module.master.nodes[0].floating_ip
+  os_auth_url       = var.os_auth_url
+  os_password       = var.os_password
+  master_labels     = var.master_labels
+  edge_labels       = var.edge_labels
+  worker_labels     = var.worker_labels
+  k8s_version       = var.kubernetes_version
+  mtu               = var.cni_mtu
+  cloud_provider    = var.cloud_provider
+  deploy_traefik    = var.deploy_traefik
+  traefik_image_tag = var.traefik_image_tag
+  deploy_nginx      = var.deploy_nginx
+  acme_email        = var.acme_email
+  storage_types     = var.storage_types
+  default_storage   = var.default_storage
+  addons_include    = var.addons_include
 }

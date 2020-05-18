@@ -157,7 +157,7 @@ spec:
       serviceAccountName: traefik-ingress-controller
       terminationGracePeriodSeconds: 60
       containers:
-      - image: traefik:v2.0.6
+      - image: traefik:${image_tag}
         name: traefik-ingress-lb
         env:
         - name: TRAEFIK_ACCESSLOG
