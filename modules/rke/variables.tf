@@ -89,3 +89,7 @@ variable "default_storage" {
 variable "addons_include" {
   type = list(string)
 }
+
+variable "write_kubeconfig" {
+  type = bool
+}
