@@ -239,3 +239,9 @@ variable "addons_include" {
   default     = null
   description = "RKE YAML files for add-ons"
 }
+
+variable "write_kubeconfig" {
+  type        = bool
+  default     = "true"
+  description = "Write kubeconfig file to disk"
+}
