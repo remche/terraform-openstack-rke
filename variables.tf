@@ -206,7 +206,7 @@ variable "deploy_traefik" {
 
 variable "traefik_image_tag" {
   type        = string
-  default     = "latest"
+  default     = "2.2"
   description = "Traefik version"
 }
 
