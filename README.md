@@ -120,9 +120,13 @@ nodes_config_drive  = "true"
 user_data_file      = "rancher.yml"
 ```
 
-### Usage with [Terraform Kubernetes Provider](https://www.terraform.io/docs/providers/kubernetes/index.html)
+### Usage with [Terraform Kubernetes Provider](https://www.terraform.io/docs/providers/kubernetes/index.html) and [Helm Provider](https://www.terraform.io/docs/providers/helm/index.html)
 
-You can use this module to populate [Terraform Kubernetes Provider](https://www.terraform.io/docs/providers/kubernetes/index.html) :
+> :warning: **Interpolating provider variables from module output is not the recommended way to achieve integration**. See [here](https://www.terraform.io/docs/providers/kubernetes/index.html) and [here](https://www.terraform.io/docs/configuration/providers.html#provider-configuration).
+>
+> Use of a data sources is recommended.
+
+(Not recommended) You can use this module to populate [Terraform Kubernetes Provider](https://www.terraform.io/docs/providers/kubernetes/index.html) :
 
 ```hcl
 provider "kubernetes" {
@@ -133,10 +137,17 @@ provider "kubernetes" {
   client_key             = module.rke.rke_cluster.client_key
   cluster_ca_certificate = module.rke.rke_cluster.ca_crt
 }
+```
 
-resource "kubernetes_namespace" "ns" {
-  metadata {
-    name = "my-namespace"
-  }
+Recommended way needs two `apply` operations, and setting the proper `terraform_remote_state` data source :
+
+```hcl
+provider "kubernetes" {
+  host     = data.terraform_remote_state.rke.outputs.cluster.api_server_url
+  username = data.terraform_remote_state.rke.outputs.cluster.kube_admin_user
+  client_certificate     = data.terraform_remote_state.rke.outputs.cluster.client_cert
+  client_key             = data.terraform_remote_state.rke.outputs.cluster.client_key
+  cluster_ca_certificate = data.terraform_remote_state.rke.outputs.cluster.ca_crt
+  load_config_file = "false"
 }
 ```
