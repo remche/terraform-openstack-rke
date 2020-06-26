@@ -65,7 +65,7 @@ variable "os_password"{}
 
 ## Documentation
 
-See [variables.tf](variables.tf) for all available options, most of them are self-explanatory.
+See [USAGE.md](USAGE.md) for all available options.
 
 ### Keypair
 
