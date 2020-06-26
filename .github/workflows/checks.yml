@@ -1,5 +1,5 @@
 name: terraform-lint
 uses: OptionAlpaca/terraform_quality_gate@v0.1.15
 on: [push, pull_request]
-
-
+with:
+  terratest: 'none'

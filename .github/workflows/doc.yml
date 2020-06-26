@@ -2,7 +2,7 @@ name: Generate terraform docs for PR
 on:
   push:
     branches:
-      - **
+      - '**'
 jobs:
   docs:
     runs-on: ubuntu-latest
