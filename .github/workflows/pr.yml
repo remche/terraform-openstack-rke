@@ -1,0 +1,29 @@
+name: Actions on PR
+on:
+  - pull_request
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Terraform Quality Gate
+      uses: OptionAlpaca/terraform_quality_gate@master
+      with:
+        terratest: 'none'
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Render terraform docs inside the USAGE.md and push changes back to PR branch
+      uses: Dirrk/terraform-docs@v1.0.8
+      with:
+        tf_docs_working_dir: .
+        tf_docs_output_file: USAGE.md
+        tf_docs_content_type: document
+        tf_docs_args: '--no-sort --no-providers'
+        tf_docs_output_method: replace
+        tf_docs_git_push: 'true'
