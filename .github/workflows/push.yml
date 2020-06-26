@@ -25,5 +25,7 @@ jobs:
       with:
         tf_docs_working_dir: .
         tf_docs_output_file: USAGE.md
+        tf_docs_content_type: document
+        tf_docs_args: '--no-sort --no-providers'
         tf_docs_output_method: replace
         tf_docs_git_push: 'true'
