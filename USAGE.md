@@ -1,381 +1,66 @@
 ## Requirements
 
-The following requirements are needed by this module:
-
-- terraform (>=0.12)
-
-- local (>=1.4.0)
-
-- null (>=2.1.2)
-
-- openstack (>=1.24.0)
-
-- rke (>=1.0.0)
-
-## Required Inputs
-
-The following input variables are required:
-
-### public\_net\_name
-
-Description: External network name
-
-Type: `string`
-
-### image\_name
-
-Description: Name of image nodes (must fullfill RKE requirements)
-
-Type: `string`
-
-### master\_flavor\_name
-
-Description: Master flavor name
-
-Type: `string`
-
-### worker\_flavor\_name
-
-Description: Worker flavor name
-
-Type: `string`
-
-### os\_auth\_url
-
-Description: Openstack auth\_url. Consider using export TF\_VAR\_os\_auth\_url=$OS\_AUTH\_URL
-
-Type: `string`
-
-### os\_password
-
-Description: Openstack password. Consider using export TF\_VAR\_os\_password=$OS\_PASSWORD
-
-Type: `string`
-
-## Optional Inputs
-
-The following input variables are optional (have default values):
-
-### cluster\_name
-
-Description: Name of the cluster
-
-Type: `string`
-
-Default: `"rke"`
-
-### ssh\_keypair\_name
-
-Description: SSH keypair name
-
-Type: `string`
-
-Default: `null`
-
-### ssh\_key\_file
-
-Description: Local path to SSH key
-
-Type: `string`
-
-Default: `"~/.ssh/id_rsa"`
-
-### secgroup\_rules
-
-Description: Security group rules
-
-Type: `list`
-
-Default:
-
-```json
-[
-  {
-    "port": 22,
-    "protocol": "tcp",
-    "source": "0.0.0.0/0"
-  },
-  {
-    "port": 6443,
-    "protocol": "tcp",
-    "source": "0.0.0.0/0"
-  },
-  {
-    "port": 80,
-    "protocol": "tcp",
-    "source": "0.0.0.0/0"
-  },
-  {
-    "port": 443,
-    "protocol": "tcp",
-    "source": "0.0.0.0/0"
-  }
-]
-```
-
-### nodes\_net\_cidr
-
-Description: Neutron network CIDR
-
-Type: `string`
-
-Default: `"192.168.42.0/24"`
-
-### dns\_servers
-
-Description: DNS servers
-
-Type: `list(string)`
-
-Default: `null`
-
-### master\_count
-
-Description: Number of master nodes (should be odd number...)
-
-Type: `number`
-
-Default: `1`
-
-### edge\_count
-
-Description: Number of edge nodes
-
-Type: `number`
-
-Default: `0`
-
-### worker\_count
-
-Description: Number of woker nodes
-
-Type: `number`
-
-Default: `2`
-
-### edge\_flavor\_name
-
-Description: Edge flavor name. Will use worker\_flavor\_name if not set
-
-Type: `string`
-
-Default: `null`
-
-### master\_server\_affinity
-
-Description: Master server group affinity
-
-Type: `string`
-
-Default: `"soft-anti-affinity"`
-
-### worker\_server\_affinity
-
-Description: Worker server group affinity
-
-Type: `string`
-
-Default: `"soft-anti-affinity"`
-
-### edge\_server\_affinity
-
-Description: Edge server group affinity
-
-Type: `string`
-
-Default: `"soft-anti-affinity"`
-
-### nodes\_config\_drive
-
-Description: Whether to use the config\_drive feature to configure the instances
-
-Type: `bool`
-
-Default: `"false"`
-
-### user\_data\_file
-
-Description: User data file to provide when launching the instance
-
-Type: `string`
-
-Default: `null`
-
-### system\_user
-
-Description: Default OS image user
-
-Type: `string`
-
-Default: `"ubuntu"`
-
-### use\_ssh\_agent
-
-Description: Whether to use ssh agent
-
-Type: `bool`
-
-Default: `"true"`
-
-### bastion\_host
-
-Description: Bastion host. Will use first master node if not set
-
-Type: `string`
-
-Default: `null`
-
-### master\_labels
-
-Description: Master labels. Ingress controller will run on nodes with egde label
-
-Type: `map(string)`
-
-Default:
-
-```json
-{
-  "node-role.kubernetes.io/edge": "true",
-  "node-role.kubernetes.io/master": "true"
-}
-```
-
-### worker\_labels
-
-Description: Worker labels
-
-Type: `map(string)`
-
-Default:
-
-```json
-{
-  "node-role.kubernetes.io/worker": "true"
-}
-```
-
-### edge\_labels
-
-Description: Edge labels. Ingress controller will run on nodes with egde label
-
-Type: `map(string)`
-
-Default:
-
-```json
-{
-  "node-role.kubernetes.io/worker": "true"
-}
-```
-
-### kubernetes\_version
-
-Description: Kubernetes version (RKE)
-
-Type: `string`
-
-Default: `null`
-
-### cni\_mtu
-
-Description: CNI MTU
-
-Type: `number`
-
-Default: `0`
-
-### cloud\_provider
-
-Description: Deploy cloud provider
-
-Type: `bool`
-
-Default: `"true"`
-
-### deploy\_traefik
-
-Description: Whether to deploy traefik. Mandatory if no edge nodes
-
-Type: `bool`
-
-Default: `"true"`
-
-### traefik\_image\_tag
-
-Description: Traefik version
-
-Type: `string`
-
-Default: `"2.2"`
-
-### deploy\_nginx
-
-Description: Whether to deploy nginx RKE addon
-
-Type: `bool`
-
-Default: `"false"`
-
-### acme\_email
-
-Description: Email for Let's Encrypt
-
-Type: `string`
-
-Default: `"example@example.com"`
-
-### storage\_types
-
-Description: Cinder storage types
-
-Type: `list(string)`
-
-Default: `null`
-
-### default\_storage
-
-Description: Default storage class
-
-Type: `string`
-
-Default: `null`
-
-### addons\_include
-
-Description: RKE YAML files for add-ons
-
-Type: `list(string)`
-
-Default: `null`
-
-### write\_kubeconfig
-
-Description: Write kubeconfig file to disk
-
-Type: `bool`
-
-Default: `"true"`
+| Name | Version |
+|------|---------|
+| terraform | >=0.12 |
+| local | >=1.4.0 |
+| null | >=2.1.2 |
+| openstack | >=1.24.0 |
+| rke | >=1.0.0 |
+
+## Providers
+
+No provider.
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| acme\_email | Email for Let's Encrypt | `string` | `"example@example.com"` | no |
+| addons\_include | RKE YAML files for add-ons | `list(string)` | `null` | no |
+| bastion\_host | Bastion host. Will use first master node if not set | `string` | `null` | no |
+| cloud\_provider | Deploy cloud provider | `bool` | `"true"` | no |
+| cluster\_name | Name of the cluster | `string` | `"rke"` | no |
+| cni\_mtu | CNI MTU | `number` | `0` | no |
+| default\_storage | Default storage class | `string` | `null` | no |
+| deploy\_nginx | Whether to deploy nginx RKE addon | `bool` | `"false"` | no |
+| deploy\_traefik | Whether to deploy traefik. Mandatory if no edge nodes | `bool` | `"true"` | no |
+| dns\_servers | DNS servers | `list(string)` | `null` | no |
+| edge\_count | Number of edge nodes | `number` | `0` | no |
+| edge\_flavor\_name | Edge flavor name. Will use worker\_flavor\_name if not set | `string` | `null` | no |
+| edge\_labels | Edge labels. Ingress controller will run on nodes with egde label | `map(string)` | <pre>{<br>  "node-role.kubernetes.io/worker": "true"<br>}</pre> | no |
+| edge\_server\_affinity | Edge server group affinity | `string` | `"soft-anti-affinity"` | no |
+| image\_name | Name of image nodes (must fullfill RKE requirements) | `string` | n/a | yes |
+| kubernetes\_version | Kubernetes version (RKE) | `string` | `null` | no |
+| master\_count | Number of master nodes (should be odd number...) | `number` | `1` | no |
+| master\_flavor\_name | Master flavor name | `string` | n/a | yes |
+| master\_labels | Master labels. Ingress controller will run on nodes with egde label | `map(string)` | <pre>{<br>  "node-role.kubernetes.io/edge": "true",<br>  "node-role.kubernetes.io/master": "true"<br>}</pre> | no |
+| master\_server\_affinity | Master server group affinity | `string` | `"soft-anti-affinity"` | no |
+| nodes\_config\_drive | Whether to use the config\_drive feature to configure the instances | `bool` | `"false"` | no |
+| nodes\_net\_cidr | Neutron network CIDR | `string` | `"192.168.42.0/24"` | no |
+| os\_auth\_url | Openstack auth\_url. Consider using export TF\_VAR\_os\_auth\_url=$OS\_AUTH\_URL | `string` | n/a | yes |
+| os\_password | Openstack password. Consider using export TF\_VAR\_os\_password=$OS\_PASSWORD | `string` | n/a | yes |
+| public\_net\_name | External network name | `string` | n/a | yes |
+| secgroup\_rules | Security group rules | `list` | <pre>[<br>  {<br>    "port": 22,<br>    "protocol": "tcp",<br>    "source": "0.0.0.0/0"<br>  },<br>  {<br>    "port": 6443,<br>    "protocol": "tcp",<br>    "source": "0.0.0.0/0"<br>  },<br>  {<br>    "port": 80,<br>    "protocol": "tcp",<br>    "source": "0.0.0.0/0"<br>  },<br>  {<br>    "port": 443,<br>    "protocol": "tcp",<br>    "source": "0.0.0.0/0"<br>  }<br>]</pre> | no |
+| ssh\_key\_file | Local path to SSH key | `string` | `"~/.ssh/id_rsa"` | no |
+| ssh\_keypair\_name | SSH keypair name | `string` | `null` | no |
+| storage\_types | Cinder storage types | `list(string)` | `null` | no |
+| system\_user | Default OS image user | `string` | `"ubuntu"` | no |
+| traefik\_image\_tag | Traefik version | `string` | `"2.2"` | no |
+| use\_ssh\_agent | Whether to use ssh agent | `bool` | `"true"` | no |
+| user\_data\_file | User data file to provide when launching the instance | `string` | `null` | no |
+| worker\_count | Number of woker nodes | `number` | `2` | no |
+| worker\_flavor\_name | Worker flavor name | `string` | n/a | yes |
+| worker\_labels | Worker labels | `map(string)` | <pre>{<br>  "node-role.kubernetes.io/worker": "true"<br>}</pre> | no |
+| worker\_server\_affinity | Worker server group affinity | `string` | `"soft-anti-affinity"` | no |
+| write\_kubeconfig | Write kubeconfig file to disk | `bool` | `"true"` | no |
 
 ## Outputs
 
-The following outputs are exported:
-
-### keypair\_name
-
-Description: The name of the keypair used for nodes
-
-### master\_nodes
-
-Description: The master nodes
-
-### edge\_nodes
-
-Description: The edge nodes
-
-### worker\_nodes
-
-Description: The worker nodes
-
-### rke\_cluster
-
-Description: RKE cluster spec
+| Name | Description |
+|------|-------------|
+| edge\_nodes | The edge nodes |
+| keypair\_name | The name of the keypair used for nodes |
+| master\_nodes | The master nodes |
+| rke\_cluster | RKE cluster spec |
+| worker\_nodes | The worker nodes |
