@@ -1,5 +1,31 @@
-name: terraform-lint
-uses: OptionAlpaca/terraform_quality_gate@v0.1.15
-on: [push, pull_request]
-with:
-  terratest: 'none'
+- name: Code quality
+  on:
+    push:
+      branches:
+        - '**'
+  jobs:
+    docs:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.push.ref }}
+      - name: Terraform Quality Gate
+        uses: OptionAlpaca/terraform_quality_gate@0.1.14
+        with:
+          terratest: 'none'
+
+- name: Code quality
+  on:
+    - pull_request
+  jobs:
+    docs:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Terraform Quality Gate
+        uses: OptionAlpaca/terraform_quality_gate@0.1.14
+        with:
+          terratest: 'none'
