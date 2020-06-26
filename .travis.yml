@@ -8,7 +8,7 @@ branches:
 env:
   global:
     # Software versions
-    - TERRAFORM_VERSION=0.12.24
+    - TERRAFORM_VERSION=0.12.28
     - TERRAFORM_PROVIDER_RKE_VERSION=1.0.0
     - TF_VAR_cluster_name=$(uuidgen -t)
     - TF_VAR_public_net_name="public"
