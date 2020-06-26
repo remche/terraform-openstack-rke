@@ -28,8 +28,8 @@ install:
   - mkdir -p "$HOME/.terraform.d/plugins/"
   - travis_retry curl -L
     "https://github.com/rancher/terraform-provider-rke/releases/download/${TERRAFORM_PROVIDER_RKE_VERSION}/terraform-provider-rke_linux-amd64"
-    -o "$HOME/.terraform.d/plugins/terraform-provider-rke"
-  - chmod +x "$HOME/.terraform.d/plugins/terraform-provider-rke"
+    -o "$HOME/.terraform.d/plugins/terraform-provider-rke_v1.0.0"
+  - chmod +x "$HOME/.terraform.d/plugins/terraform-provider-rke_v1.0.0"
   - ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa
   - eval "$(ssh-agent -s)"
   - ssh-add
