@@ -71,6 +71,8 @@ See [USAGE.md](USAGE.md) for all available options.
 
 You can either specify a ssh key file to generate new keypair via `ssh_key_file` (default) or specify already existent keypair via `ssh_keypair_name`.
 
+> :warning: Default config will try to use  [ssh agent](https://linux.die.net/man/1/ssh-agent) for ssh connections to the nodes. Add `use_ssh_agent = false` if you don't use it.
+
 ### Secgroup
 
 You can define your own rules (e.g. limiting port 22 and 6443 to admin box).
