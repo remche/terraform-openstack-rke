@@ -21,3 +21,7 @@ variable "public_net_name" {
 variable "dns_servers" {
   type = list(string)
 }
+
+variable "dns_domain" {
+  type = string
+}

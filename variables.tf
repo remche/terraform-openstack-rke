@@ -55,6 +55,12 @@ variable "dns_servers" {
   description = "DNS servers"
 }
 
+variable "dns_domain" {
+  type        = string
+  default     = null
+  description = "DNS domain for DNS integration. DNS domain names must have a dot at the end"
+}
+
 ##################
 # Node variables #
 ##################

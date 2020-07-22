@@ -13,6 +13,7 @@ module "network" {
   nodes_net_cidr  = var.nodes_net_cidr
   public_net_name = var.public_net_name
   dns_servers     = var.dns_servers
+  dns_domain      = var.dns_domain
 }
 
 module "secgroup" {
