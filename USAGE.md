@@ -129,6 +129,14 @@ Type: `list(string)`
 
 Default: `null`
 
+### dns\_domain
+
+Description: DNS domain for DNS integration. DNS domain names must have a dot at the end
+
+Type: `string`
+
+Default: `null`
+
 ### master\_count
 
 Description: Number of master nodes (should be odd number...)
