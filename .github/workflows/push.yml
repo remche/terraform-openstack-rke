@@ -11,7 +11,7 @@ jobs:
       with:
         ref: ${{ github.event.push.ref }}
     - name: Terraform Quality Gate
-      uses: OptionAlpaca/terraform_quality_gate@master
+      uses: dallinwright/terraform_quality_gate@v0.0.7
       with:
         terratest: 'none'
   docs:
