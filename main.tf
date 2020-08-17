@@ -87,6 +87,7 @@ module "rke" {
   ssh_key_file      = var.ssh_key_file
   use_ssh_agent     = var.use_ssh_agent
   bastion_host      = var.bastion_host != null ? var.bastion_host : module.master.nodes[0].floating_ip
+  wait_for_commands = var.wait_for_commands
   os_auth_url       = var.os_auth_url
   os_password       = var.os_password
   master_labels     = var.master_labels

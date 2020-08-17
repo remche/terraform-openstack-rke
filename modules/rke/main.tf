@@ -10,7 +10,7 @@ resource "null_resource" "wait_for_master_ssh" {
     agent       = var.use_ssh_agent
   }
   provisioner "remote-exec" {
-    inline = ["# Connected to ${var.master_nodes[count.index].name}"]
+    inline = var.wait_for_commands
   }
 }
 
@@ -26,7 +26,7 @@ resource "null_resource" "wait_for_edge_ssh" {
     agent       = var.use_ssh_agent
   }
   provisioner "remote-exec" {
-    inline = ["# Connected to ${var.edge_nodes[count.index].name}"]
+    inline = var.wait_for_commands
   }
 }
 
@@ -43,7 +43,7 @@ resource "null_resource" "wait_for_worker_ssh" {
     agent        = var.use_ssh_agent
   }
   provisioner "remote-exec" {
-    inline = ["# Connected to ${var.worker_nodes[count.index].name}"]
+    inline = var.wait_for_commands
   }
 }
 
