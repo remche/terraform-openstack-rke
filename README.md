@@ -94,6 +94,9 @@ You can set [affinity policy](https://www.terraform.io/docs/providers/openstack/
 
 > :warning: `soft-anti-affinity` and `soft-affinity` needs Compute service API 2.15 or above.
 
+You can use `wait_for_commands` to specify a list of commands to be run before invoking RKE. It can be useful when installing Docker at provision time (note that cooking your image embedding Docker with [Packer](https://packer.io) is a better practice though) :
+`wait_for_commands = ["while docker info ; [ $? -ne 0 ]; do echo wait for docker; sleep 30 ; done"]`
+
 ### Kubernetes version
 
 You can specify kubernetes version with `kubernetes_version` variables. Refer to RKE supported version.
