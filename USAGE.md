@@ -233,6 +233,20 @@ Type: `string`
 
 Default: `null`
 
+### wait\_for\_commands
+
+Description: Command to run on nodes before running RKE
+
+Type: `list(string)`
+
+Default:
+
+```json
+[
+  "# Connected !"
+]
+```
+
 ### master\_labels
 
 Description: Master labels. Ingress controller will run on nodes with egde label
