@@ -160,7 +160,7 @@ variable "bastion_host" {
 variable "wait_for_commands" {
   type        = list(string)
   default     = ["# Connected !"]
-  description = "Command to run on nodes before running RKE"
+  description = "Commands to run on nodes before running RKE"
 }
 
 variable "os_auth_url" {
