@@ -12,8 +12,6 @@ jobs:
         ref: ${{ github.event.push.ref }}
     - name: Terraform Quality Gate
       uses: OptionAlpaca/terraform_quality_gate@master
-      with:
-        terratest: 'none'
   docs:
     runs-on: ubuntu-latest
     steps:
