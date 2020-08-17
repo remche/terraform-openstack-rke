@@ -235,7 +235,7 @@ Default: `null`
 
 ### wait\_for\_commands
 
-Description: Command to run on nodes before running RKE
+Description: Commands to run on nodes before running RKE
 
 Type: `list(string)`
 
