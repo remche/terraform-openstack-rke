@@ -10,7 +10,7 @@ resource "null_resource" "wait_for_master_ssh" {
     agent       = var.use_ssh_agent
   }
   provisioner "remote-exec" {
-    inline = ["while docker info ; [ $? -ne 0 ]; do echo wait for docker; sleep 30 ; done"]
+    inline = var.wait_for_commands
   }
 }
 
@@ -26,7 +26,7 @@ resource "null_resource" "wait_for_edge_ssh" {
     agent       = var.use_ssh_agent
   }
   provisioner "remote-exec" {
-    inline = ["while docker info ; [ $? -ne 0 ]; do echo wait for docker; sleep 30 ; done"]
+    inline = var.wait_for_commands
   }
 }
 
@@ -43,7 +43,7 @@ resource "null_resource" "wait_for_worker_ssh" {
     agent        = var.use_ssh_agent
   }
   provisioner "remote-exec" {
-    inline = ["while docker info ; [ $? -ne 0 ]; do echo wait for docker; sleep 30 ; done"]
+    inline = var.wait_for_commands
   }
 }
 

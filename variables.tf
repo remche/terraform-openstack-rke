@@ -135,7 +135,6 @@ variable "user_data_file" {
   description = "User data file to provide when launching the instance"
 }
 
-
 #################
 # RKE variables #
 #################
@@ -156,6 +155,12 @@ variable "bastion_host" {
   type        = string
   default     = null
   description = "Bastion host. Will use first master node if not set"
+}
+
+variable "wait_for_commands" {
+  type        = list(string)
+  default     = ["# Connected !"]
+  description = "Command to run on nodes before running RKE"
 }
 
 variable "os_auth_url" {

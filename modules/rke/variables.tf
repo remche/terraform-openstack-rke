@@ -29,6 +29,10 @@ variable "bastion_host" {
   type = string
 }
 
+variable "wait_for_commands" {
+  type = list(string)
+}
+
 variable "os_auth_url" {
   type = string
 }
