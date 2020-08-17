@@ -10,8 +10,6 @@ jobs:
         ref: ${{ github.event.pull_request.head.ref }}
     - name: Terraform Quality Gate
       uses: dallinwright/terraform_quality_gate@v0.0.7
-      with:
-        terratest: 'none'
   docs:
     runs-on: ubuntu-latest
     steps:
