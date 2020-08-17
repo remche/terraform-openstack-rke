@@ -2,15 +2,17 @@ name: Actions on PR
 on:
   - pull_request
 jobs:
-  docs:
+  code-quality:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
       with:
         ref: ${{ github.event.pull_request.head.ref }}
     - name: Terraform Quality Gate
-      uses: OptionAlpaca/terraform_quality_gate@master
-  code-quality:
+      uses: dallinwright/terraform_quality_gate@v0.0.7
+      with:
+        terratest: ''
+  docs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
