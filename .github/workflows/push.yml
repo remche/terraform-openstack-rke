@@ -13,7 +13,7 @@ jobs:
     - name: Terraform Quality Gate
       uses: dallinwright/terraform_quality_gate@v0.0.7
       with:
-        terratest: None
+        terratest: ''
   docs:
     runs-on: ubuntu-latest
     steps:
