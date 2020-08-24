@@ -93,6 +93,9 @@ module "rke" {
   master_labels     = var.master_labels
   edge_labels       = var.edge_labels
   worker_labels     = var.worker_labels
+  master_taints     = var.master_taints
+  edge_taints       = var.edge_taints
+  worker_taints     = var.worker_taints
   k8s_version       = var.kubernetes_version
   mtu               = var.cni_mtu
   cloud_provider    = var.cloud_provider

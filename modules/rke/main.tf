@@ -65,6 +65,14 @@ resource "rke_cluster" "cluster" {
       user              = var.system_user
       role              = ["controlplane", "etcd"]
       labels            = var.master_labels
+      dynamic taints {
+        for_each = var.master_taints
+        content {
+          key    = lookup(taints.value, "key")
+          value  = lookup(taints.value, "value")
+          effect = lookup(taints.value, "effect", "NoSchedule")
+        }
+      }
     }
   }
 
@@ -77,6 +85,14 @@ resource "rke_cluster" "cluster" {
       user              = var.system_user
       role              = ["worker"]
       labels            = var.edge_labels
+      dynamic taints {
+        for_each = var.edge_taints
+        content {
+          key    = lookup(taints.value, "key")
+          value  = lookup(taints.value, "value")
+          effect = lookup(taints.value, "effect", "NoSchedule")
+        }
+      }
     }
   }
 
@@ -89,6 +105,14 @@ resource "rke_cluster" "cluster" {
       user              = var.system_user
       role              = ["worker"]
       labels            = var.worker_labels
+      dynamic taints {
+        for_each = var.worker_taints
+        content {
+          key    = lookup(taints.value, "key")
+          value  = lookup(taints.value, "value")
+          effect = lookup(taints.value, "effect", "NoSchedule")
+        }
+      }
     }
   }
 

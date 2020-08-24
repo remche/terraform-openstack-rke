@@ -191,6 +191,24 @@ variable "edge_labels" {
   description = "Edge labels. Ingress controller will run on nodes with egde label"
 }
 
+variable "master_taints" {
+  type        = list(map(string))
+  default     = []
+  description = "Master taints"
+}
+
+variable "worker_taints" {
+  type        = list(map(string))
+  default     = []
+  description = "Worker taints"
+}
+
+variable "edge_taints" {
+  type        = list(map(string))
+  default     = []
+  description = "Edge taints"
+}
+
 variable "kubernetes_version" {
   type        = string
   default     = null

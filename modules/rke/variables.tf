@@ -53,6 +53,18 @@ variable "edge_labels" {
   type = map(string)
 }
 
+variable "master_taints" {
+  type = list(map(string))
+}
+
+variable "worker_taints" {
+  type = list(map(string))
+}
+
+variable "edge_taints" {
+  type = list(map(string))
+}
+
 variable "k8s_version" {
   type = string
 }
