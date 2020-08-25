@@ -290,6 +290,30 @@ Default:
 }
 ```
 
+### master\_taints
+
+Description: Master taints
+
+Type: `list(map(string))`
+
+Default: `[]`
+
+### worker\_taints
+
+Description: Worker taints
+
+Type: `list(map(string))`
+
+Default: `[]`
+
+### edge\_taints
+
+Description: Edge taints
+
+Type: `list(map(string))`
+
+Default: `[]`
+
 ### kubernetes\_version
 
 Description: Kubernetes version (RKE)
