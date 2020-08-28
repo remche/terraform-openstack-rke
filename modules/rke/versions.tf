@@ -13,5 +13,5 @@ terraform {
       source  = "rancher/rke"
     }
   }
-  required_version = ">= 0.13"
+  required_version = ">= 0.13.1"
 }
