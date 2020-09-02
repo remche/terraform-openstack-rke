@@ -2,7 +2,7 @@
 
 The following requirements are needed by this module:
 
-- terraform (>=0.12)
+- terraform (>=0.13.1)
 
 - local (>=1.4.0)
 

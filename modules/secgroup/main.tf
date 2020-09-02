@@ -18,12 +18,15 @@ resource "openstack_networking_secgroup_rule_v2" "tunnel_rule" {
 }
 
 resource "openstack_networking_secgroup_rule_v2" "rules" {
-  count             = length(var.rules)
+  for_each          = {
+    for rule in var.rules :
+    format("%s-%s-%s", rule["source"], rule["protocol"], rule["port"]) => rule
+  }
   direction         = "ingress"
   ethertype         = "IPv4"
-  protocol          = var.rules[count.index].protocol
-  port_range_min    = var.rules[count.index].port
-  port_range_max    = var.rules[count.index].port
-  remote_ip_prefix  = var.rules[count.index].source
+  protocol          = each.value.protocol
+  port_range_min    = each.value.port
+  port_range_max    = each.value.port
+  remote_ip_prefix  = each.value.source
   security_group_id = openstack_networking_secgroup_v2.secgroup.id
 }

@@ -9,16 +9,30 @@ Inspired by [Marco Capuccini](https://github.com/mcapuccini/terraform-openstack-
 
 ## Table of contents
 - [Prerequisites](#prerequisites)
+- [Upgrading to Terraform 0.13](#terraform-0.13-upgrade)
 - [Examples](#examples)
 - [Documentation](#documentation)
 
 ## Prerequisites
 
-- [Terraform](https://www.terraform.io/) 0.12+
-- [terraform-provider-rke](https://github.com/rancher/terraform-provider-rke) v1.0.0-beta1+
+- [Terraform](https://www.terraform.io/) 0.13+. For Terraform 0.12.x, use terraform/v0.12 branch.
 - [OpenStack](https://docs.openstack.org/zh_CN/user-guide/common/cli-set-environment-variables-using-openstack-rc.html) environment properly sourced.
 - A Openstack image fullfiling [RKE requirements](https://rancher.com/docs/rke/latest/en/os/).
 - At least one Openstack floating IP.
+
+## Terraform 0.13 upgrade
+
+terraform-openstack-rke >= 0.5 supports Terraform >= 0.13. Some changes in the way Terraform manage providers require manual operations.
+
+```hcl
+terraform 0.13upgrade
+terraform  state replace-provider 'registry.terraform.io/-/rke' 'registry.terraform.io/rancher/rke'
+terraform init
+```
+
+For more informations see [Upgrading to Terraform v0.13](https://www.terraform.io/upgrade-guides/0-13.html)
+
+> :warning: There is some deep changes between 0.4 and 0.5 branches. That will lead to a replacement of the nodes and the rke cluster resources :warning:
 
 ## Examples
 ### Minimal example with master node as egde node and two worker nodes

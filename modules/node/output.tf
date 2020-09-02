@@ -3,5 +3,5 @@ output "associate_floating_ip" {
 }
 
 output "nodes" {
-  value = data.null_data_source.nodes[*].outputs
+  value = zipmap(openstack_compute_instance_v2.instance[*].name, data.null_data_source.nodes[*].outputs)
 }
