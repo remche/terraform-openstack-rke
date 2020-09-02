@@ -20,7 +20,7 @@ module "secgroup" {
   source       = "./modules/secgroup"
   name_prefix  = "${var.cluster_name}"
   rules        = var.secgroup_rules
-  bastion_host = var.bastion_host != null ? var.bastion_host : module.master.nodes[0].floating_ip
+  bastion_host = var.bastion_host != null ? var.bastion_host : values(module.master.nodes)[0].floating_ip
 }
 
 module "master" {
@@ -86,7 +86,7 @@ module "rke" {
   system_user       = var.system_user
   ssh_key_file      = var.ssh_key_file
   use_ssh_agent     = var.use_ssh_agent
-  bastion_host      = var.bastion_host != null ? var.bastion_host : module.master.nodes[0].floating_ip
+  bastion_host      = var.bastion_host != null ? var.bastion_host : values(module.master.nodes)[0].floating_ip
   wait_for_commands = var.wait_for_commands
   os_auth_url       = var.os_auth_url
   os_password       = var.os_password

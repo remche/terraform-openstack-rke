@@ -38,7 +38,6 @@ resource "openstack_compute_floatingip_associate_v2" "associate_floating_ip" {
 data "null_data_source" "nodes" {
   count = var.nodes_count
   inputs = {
-    name        = openstack_compute_instance_v2.instance[count.index].name
     id          = openstack_compute_instance_v2.instance[count.index].id
     internal_ip = openstack_compute_instance_v2.instance[count.index].access_ip_v4
     floating_ip = openstack_networking_floatingip_v2.floating_ip != [] ? openstack_networking_floatingip_v2.floating_ip[count.index].address : ""

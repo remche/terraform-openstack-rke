@@ -1,10 +1,13 @@
 resource "null_resource" "wait_for_master_ssh" {
-  count = length(var.master_nodes)
+  for_each = var.master_nodes
+#  for_each = {
+#    for node in var.master_nodes: node.name => node
+#  }
   triggers = {
-    node_instance_id = var.master_nodes[count.index].id
+    node_instance_id = each.value.id
   }
   connection {
-    host        = var.master_nodes[count.index].floating_ip
+    host        = each.value.floating_ip
     user        = var.system_user
     private_key = var.use_ssh_agent ? null : file(var.ssh_key_file)
     agent       = var.use_ssh_agent
@@ -15,12 +18,12 @@ resource "null_resource" "wait_for_master_ssh" {
 }
 
 resource "null_resource" "wait_for_edge_ssh" {
-  count = length(var.edge_nodes)
+  for_each = var.edge_nodes
   triggers = {
-    node_instance_id = var.edge_nodes[count.index].id
+    node_instance_id = each.value.id
   }
   connection {
-    host        = var.edge_nodes[count.index].floating_ip
+    host        = each.value.floating_ip
     user        = var.system_user
     private_key = var.use_ssh_agent ? null : file(var.ssh_key_file)
     agent       = var.use_ssh_agent
@@ -31,13 +34,13 @@ resource "null_resource" "wait_for_edge_ssh" {
 }
 
 resource "null_resource" "wait_for_worker_ssh" {
-  count = length(var.worker_nodes)
+  for_each = var.worker_nodes
   triggers = {
-    node_instance_id = var.worker_nodes[count.index].id
+    node_instance_id = each.value.id
   }
   connection {
     bastion_host = var.bastion_host
-    host         = var.worker_nodes[count.index].internal_ip
+    host         = each.value.internal_ip
     user         = var.system_user
     private_key  = var.use_ssh_agent ? null : file(var.ssh_key_file)
     agent        = var.use_ssh_agent
@@ -61,7 +64,7 @@ resource "rke_cluster" "cluster" {
     content {
       address           = nodes.value.floating_ip != "" ? nodes.value.floating_ip : nodes.value.internal_ip
       internal_address  = nodes.value.internal_ip
-      hostname_override = nodes.value.name
+      hostname_override = nodes.key
       user              = var.system_user
       role              = ["controlplane", "etcd"]
       labels            = var.master_labels
@@ -81,7 +84,7 @@ resource "rke_cluster" "cluster" {
     content {
       address           = nodes.value.floating_ip != "" ? nodes.value.floating_ip : nodes.value.internal_ip
       internal_address  = nodes.value.internal_ip
-      hostname_override = nodes.value.name
+      hostname_override = nodes.key
       user              = var.system_user
       role              = ["worker"]
       labels            = var.edge_labels
@@ -101,7 +104,7 @@ resource "rke_cluster" "cluster" {
     content {
       address           = nodes.value.floating_ip != "" ? nodes.value.floating_ip : nodes.value.internal_ip
       internal_address  = nodes.value.internal_ip
-      hostname_override = nodes.value.name
+      hostname_override = nodes.key
       user              = var.system_user
       role              = ["worker"]
       labels            = var.worker_labels
