@@ -8,10 +8,12 @@ jobs:
     - uses: actions/checkout@v2
       with:
         ref: ${{ github.event.pull_request.head.ref }}
-    - name: Terraform Quality Gate
-      uses: dallinwright/terraform_quality_gate@v0.0.7
+    - name: Terraform fmt
+      uses: hashicorp/setup-terraform@v1
       with:
-        terratest: ''
+        terraform_version: 0.13.1
+      run: terraform fmt
+      continue-on-error: true
   docs:
     runs-on: ubuntu-latest
     steps:
