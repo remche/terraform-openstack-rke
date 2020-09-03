@@ -32,7 +32,7 @@ terraform init
 
 For more informations see [Upgrading to Terraform v0.13](https://www.terraform.io/upgrade-guides/0-13.html)
 
-> :warning: There is some deep changes between 0.4 and 0.5 branches. That will lead to a replacement of the nodes and the rke cluster resources :warning:
+> :warning: There is some deep changes between 0.4 and 0.5 branches. This may lead to a replacement of the nodes and the rke cluster resources :warning:
 
 ## Examples
 ### Minimal example with master node as egde node and two worker nodes
