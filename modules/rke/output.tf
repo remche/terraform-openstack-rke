@@ -5,7 +5,6 @@ data "null_data_source" "rke_cluster" {
     client_cert      = rke_cluster.cluster.client_cert
     client_key       = rke_cluster.cluster.client_key
     kube_config_yaml = rke_cluster.cluster.kube_config_yaml
-    rke_cluster_yaml = rke_cluster.cluster.rke_cluster_yaml
   }
 }
 

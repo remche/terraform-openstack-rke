@@ -1,8 +1,5 @@
 resource "null_resource" "wait_for_master_ssh" {
   for_each = var.master_nodes
-#  for_each = {
-#    for node in var.master_nodes: node.name => node
-#  }
   triggers = {
     node_instance_id = each.value.id
   }
