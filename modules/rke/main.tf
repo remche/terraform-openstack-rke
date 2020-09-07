@@ -53,8 +53,9 @@ data "openstack_identity_auth_scope_v3" "scope" {
 
 resource "rke_cluster" "cluster" {
 
-  depends_on = [var.rke_depends_on, null_resource.wait_for_master_ssh,
+  depends_on   = [var.rke_depends_on, null_resource.wait_for_master_ssh,
   null_resource.wait_for_edge_ssh, null_resource.wait_for_worker_ssh]
+  cluster_name = var.cluster_name
 
   dynamic nodes {
     for_each = var.master_nodes

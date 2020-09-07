@@ -2,6 +2,9 @@ variable "rke_depends_on" {
   type    = any
   default = null
 }
+variable "cluster_name" {
+  type = string
+}
 
 variable "master_nodes" {
 }

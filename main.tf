@@ -80,6 +80,7 @@ module "rke" {
     module.worker.associate_floating_ip,
     module.network.router_interface,
   module.secgroup.secgroup_rules]
+  cluster_name      = var.cluster_name
   master_nodes      = module.master.nodes
   worker_nodes      = module.worker.nodes
   edge_nodes        = module.edge.nodes
