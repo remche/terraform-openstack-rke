@@ -1,6 +1,6 @@
 resource "openstack_networking_secgroup_v2" "secgroup" {
   name        = "${var.name_prefix}-secgroup"
-  description = "Security gropup for RKE"
+  description = "Security group for RKE"
 }
 
 resource "openstack_networking_secgroup_rule_v2" "default_rule" {
