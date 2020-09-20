@@ -111,6 +111,16 @@ You can set [affinity policy](https://www.terraform.io/docs/providers/openstack/
 You can use `wait_for_commands` to specify a list of commands to be run before invoking RKE. It can be useful when installing Docker at provision time (note that cooking your image embedding Docker with [Packer](https://packer.io) is a better practice though) :
 `wait_for_commands = ["while docker info ; [ $? -ne 0 ]; do echo wait for docker; sleep 30 ; done"]`
 
+#### Boot from volume
+
+Some providers require to boot the instances from an attached boot volume instead of the nova ephemeral volume.
+To enable this feature, provide the variables to the config file:
+
+```hcl
+boot_from_volume = true
+boot_volume_size = 20
+```
+
 ### Kubernetes version
 
 You can specify kubernetes version with `kubernetes_version` variables. Refer to RKE supported version.

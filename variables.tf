@@ -135,6 +135,18 @@ variable "user_data_file" {
   description = "User data file to provide when launching the instance"
 }
 
+variable "boot_from_volume" {
+  type        = bool
+  default     = false
+  description = "Boot nodes from volume"
+}
+
+variable "boot_volume_size" {
+  type        = number
+  default     = 20
+  description = "The size of the boot volume"
+}
+
 #################
 # RKE variables #
 #################

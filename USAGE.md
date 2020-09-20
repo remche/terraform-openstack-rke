@@ -209,6 +209,22 @@ Type: `string`
 
 Default: `null`
 
+### boot\_from\_volume
+
+Description: Boot the node instances from an attached volume
+
+Type: `bool`
+
+Default: `false`
+
+### boot\_volume\_size
+
+Description: The size of the boot volume in GB
+
+Type: `number`
+
+Default: `20`
+
 ### system\_user
 
 Description: Default OS image user

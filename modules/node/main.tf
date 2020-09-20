@@ -3,11 +3,15 @@ resource "openstack_compute_servergroup_v2" "servergroup" {
   policies = [var.server_affinity]
 }
 
+data "openstack_images_image_v2" "image" {
+  name = var.image_name
+}
+
 resource "openstack_compute_instance_v2" "instance" {
   depends_on   = [var.node_depends_on]
   count        = var.nodes_count
   name         = "${var.name_prefix}-${format("%03d", count.index + 1)}"
-  image_name   = var.image_name
+  image_name   = var.boot_from_volume ? null : var.image_name
   flavor_name  = var.flavor_name
   key_pair     = var.keypair_name
   config_drive = var.config_drive
@@ -21,6 +25,18 @@ resource "openstack_compute_instance_v2" "instance" {
 
   scheduler_hints {
     group = openstack_compute_servergroup_v2.servergroup.id
+  }
+
+  dynamic "block_device" {
+    for_each = var.boot_from_volume ? [{ size = var.boot_volume_size }] : []
+    content {
+      uuid                  = data.openstack_images_image_v2.image.id
+      source_type           = "image"
+      volume_size           = block_device.value["size"]
+      boot_index            = 0
+      destination_type      = "volume"
+      delete_on_termination = true
+    }
   }
 }
 

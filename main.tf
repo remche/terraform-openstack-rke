@@ -38,6 +38,8 @@ module "master" {
   config_drive       = var.nodes_config_drive
   floating_ip_pool   = var.public_net_name
   user_data          = var.user_data_file != null ? file(var.user_data_file) : null
+  boot_from_volume   = var.boot_from_volume
+  boot_volume_size   = var.boot_volume_size
 }
 
 module "edge" {
@@ -55,6 +57,8 @@ module "edge" {
   config_drive       = var.nodes_config_drive
   floating_ip_pool   = var.public_net_name
   user_data          = var.user_data_file != null ? file(var.user_data_file) : null
+  boot_from_volume   = var.boot_from_volume
+  boot_volume_size   = var.boot_volume_size
 }
 
 module "worker" {
@@ -71,6 +75,8 @@ module "worker" {
   config_drive     = var.nodes_config_drive
   floating_ip_pool = var.public_net_name
   user_data        = var.user_data_file != null ? file(var.user_data_file) : null
+  boot_from_volume   = var.boot_from_volume
+  boot_volume_size   = var.boot_volume_size
 }
 
 module "rke" {

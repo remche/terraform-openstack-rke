@@ -52,3 +52,11 @@ variable "floating_ip_pool" {
 variable "user_data" {
   type = string
 }
+
+variable "boot_from_volume" {
+  type    = bool
+}
+
+variable "boot_volume_size" {
+  type    = number
+}
