@@ -211,7 +211,7 @@ Default: `null`
 
 ### boot\_from\_volume
 
-Description: Boot the node instances from an attached volume
+Description: Boot nodes from volume
 
 Type: `bool`
 
@@ -219,7 +219,7 @@ Default: `false`
 
 ### boot\_volume\_size
 
-Description: The size of the boot volume in GB
+Description: The size of the boot volume
 
 Type: `number`
 
