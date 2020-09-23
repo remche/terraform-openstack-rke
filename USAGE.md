@@ -354,6 +354,14 @@ Type: `bool`
 
 Default: `"true"`
 
+### ignore\_volume\_az
+
+Description: Ignore volume avaibility zone
+
+Type: `bool`
+
+Default: `"false"`
+
 ### deploy\_traefik
 
 Description: Whether to deploy traefik. Mandatory if no edge nodes
