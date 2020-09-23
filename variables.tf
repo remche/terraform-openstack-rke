@@ -239,6 +239,12 @@ variable "cloud_provider" {
   description = "Deploy cloud provider"
 }
 
+variable "ignore_volume_az" {
+  type        = bool
+  default     = "false"
+  description = "Ignore volume avaibility zone"
+}
+
 variable "deploy_traefik" {
   type        = bool
   default     = "true"

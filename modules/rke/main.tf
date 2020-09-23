@@ -148,6 +148,9 @@ resource "rke_cluster" "cluster" {
           tenant_id = data.openstack_identity_auth_scope_v3.scope.project_id
           domain_id = data.openstack_identity_auth_scope_v3.scope.project_domain_id
         }
+        block_storage {
+          ignore_volume_az = var.ignore_volume_az
+        }
       }
     }
   }

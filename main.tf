@@ -106,6 +106,7 @@ module "rke" {
   k8s_version       = var.kubernetes_version
   mtu               = var.cni_mtu
   cloud_provider    = var.cloud_provider
+  ignore_volume_az  = var.ignore_volume_az
   deploy_traefik    = var.deploy_traefik
   traefik_image_tag = var.traefik_image_tag
   deploy_nginx      = var.deploy_nginx

@@ -81,6 +81,10 @@ variable "cloud_provider" {
   type = bool
 }
 
+variable "ignore_volume_az" {
+  type = bool
+}
+
 variable "deploy_traefik" {
   type = bool
 }
