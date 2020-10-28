@@ -23,3 +23,8 @@ output "rke_cluster" {
   description = "RKE cluster spec"
   sensitive   = "true"
 }
+
+output "nodes_subnet" {
+  value       = module.network.nodes_subnet
+  description = "The nodes subnet"
+}
