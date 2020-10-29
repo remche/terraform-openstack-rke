@@ -449,3 +449,7 @@ Description: The worker nodes
 ### rke\_cluster
 
 Description: RKE cluster spec
+
+### nodes\_subnet
+
+Description: The nodes subnet
