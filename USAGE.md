@@ -356,7 +356,7 @@ Default: `"true"`
 
 ### ignore\_volume\_az
 
-Description: Ignore volume avaibility zone
+Description: Ignore volume availability zone
 
 Type: `bool`
 
