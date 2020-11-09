@@ -4,7 +4,6 @@ language: python
 branches:
   only:
     - master
-    - tf-0.13
 
 env:
   global:
