@@ -147,6 +147,12 @@ variable "boot_volume_size" {
   description = "The size of the boot volume"
 }
 
+variable "availability_zones" {
+  type        = list(string)
+  default     = []
+  description = "The list of AZs to deploy nodes into"
+}
+
 #################
 # RKE variables #
 #################

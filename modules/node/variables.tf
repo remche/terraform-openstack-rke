@@ -60,3 +60,7 @@ variable "boot_from_volume" {
 variable "boot_volume_size" {
   type    = number
 }
+
+variable "availability_zones" {
+  type = list(string)
+}

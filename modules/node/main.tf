@@ -16,6 +16,7 @@ resource "openstack_compute_instance_v2" "instance" {
   key_pair     = var.keypair_name
   config_drive = var.config_drive
   user_data    = var.user_data
+  availability_zone_hints = length(var.availability_zones) > 0 ? var.availability_zones[count.index % length(var.availability_zones)] : null
 
   network {
     name = var.network_name
