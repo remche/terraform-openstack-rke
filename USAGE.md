@@ -225,6 +225,14 @@ Type: `number`
 
 Default: `20`
 
+### availability\_zones
+
+Description: The list of AZs to deploy nodes into
+
+Type: `list(string)`
+
+Default: `[]`
+
 ### system\_user
 
 Description: Default OS image user
