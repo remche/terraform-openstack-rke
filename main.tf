@@ -110,6 +110,7 @@ module "rke" {
   mtu               = var.cni_mtu
   cloud_provider    = var.cloud_provider
   ignore_volume_az  = var.ignore_volume_az
+  floating_network  = var.public_net_name
   use_octavia       = var.use_octavia
   deploy_traefik    = var.deploy_traefik
   traefik_image_tag = var.traefik_image_tag

@@ -85,6 +85,10 @@ variable "ignore_volume_az" {
   type = bool
 }
 
+variable "floating_network" {
+  type = string
+}
+
 variable "use_octavia" {
   type = bool
 }
