@@ -151,6 +151,9 @@ resource "rke_cluster" "cluster" {
         block_storage {
           ignore_volume_az = var.ignore_volume_az
         }
+        load_balancer {
+          use_octavia = var.use_octavia
+        }
       }
     }
   }

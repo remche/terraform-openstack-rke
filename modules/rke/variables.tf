@@ -85,6 +85,10 @@ variable "ignore_volume_az" {
   type = bool
 }
 
+variable "use_octavia" {
+  type = bool
+}
+
 variable "deploy_traefik" {
   type = bool
 }
