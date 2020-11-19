@@ -28,3 +28,8 @@ output "nodes_subnet" {
   value       = module.network.nodes_subnet
   description = "The nodes subnet"
 }
+
+output "loadbalancer_floating_ip" {
+  value       = module.loadbalancer.floating_ip
+  description = "The floating ip of the loadbalancer"
+}
