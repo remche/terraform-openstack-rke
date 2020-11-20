@@ -78,6 +78,38 @@ resource "openstack_lb_member_v2" "http" {
   protocol_port = 80
 }
 
+resource "openstack_lb_listener_v2" "api" {
+  name            = "${var.name_prefix}-api-listener"
+  protocol        = "TCP"
+  protocol_port   = 6443
+  loadbalancer_id = openstack_lb_loadbalancer_v2.loadbalancer.id
+}
+
+resource "openstack_lb_pool_v2" "api" {
+  name        = "${var.name_prefix}-api-pool"
+  protocol    = "TCP"
+  listener_id = openstack_lb_listener_v2.api.id
+  lb_method   = "ROUND_ROBIN"
+}
+
+resource "openstack_lb_monitor_v2" "api" {
+  name        = "${var.name_prefix}-api-monitor"
+  pool_id     = openstack_lb_pool_v2.api.id
+  type        = "TCP"
+  timeout     = 1
+  delay       = 1
+  max_retries = 3
+}
+
+resource "openstack_lb_member_v2" "api" {
+  for_each      = var.lb_members
+  name          = each.key
+  pool_id       = openstack_lb_pool_v2.api.id
+  address       = each.value.internal_ip
+  protocol_port = 6443
+}
+
+
 resource "openstack_networking_floatingip_v2" "loadbalancer" {
   pool = var.floating_network
 }
