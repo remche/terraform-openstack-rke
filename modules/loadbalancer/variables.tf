@@ -2,11 +2,10 @@ variable "name_prefix" {
   type = string
 }
 
-variable "subnet_name" {
-  type = string
+variable "subnet" {
 }
 
-variable "secgroup_name" {
+variable "secgroup_id" {
   type = string
 }
 

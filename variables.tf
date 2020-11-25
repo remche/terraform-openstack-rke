@@ -61,6 +61,12 @@ variable "dns_domain" {
   description = "DNS domain for DNS integration. DNS domain names must have a dot at the end"
 }
 
+variable "enable_loadbalancer" {
+  type        = bool
+  default     = false
+  description = "Enable Octabia LB for master/edge nodes"
+}
+
 ##################
 # Node variables #
 ##################

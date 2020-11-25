@@ -85,8 +85,9 @@ module "worker" {
 module "loadbalancer" {
   source           = "./modules/loadbalancer"
   name_prefix      = "${var.cluster_name}-loadbalancer"
-  subnet_name      = module.network.nodes_subnet.name
-  secgroup_name    = module.secgroup.secgroup_name
+  count            = var.enable_loadbalancer ? 1 : 0
+  subnet           = module.network.nodes_subnet
+  secgroup_id      = module.secgroup.secgroup_id
   floating_network = var.public_net_name
   lb_members       = length(module.edge.nodes) > 0 ? module.edge.nodes : module.master.nodes
 }

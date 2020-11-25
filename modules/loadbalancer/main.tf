@@ -2,18 +2,10 @@ data "openstack_networking_network_v2" "floating_net" {
   name = var.floating_network
 }
 
-data "openstack_networking_subnet_v2" "subnet" {
-  name = var.subnet_name
-}
-
-data "openstack_networking_secgroup_v2" "secgroup" {
-  name = var.secgroup_name
-}
-
 resource "openstack_lb_loadbalancer_v2" "loadbalancer" {
   name = var.name_prefix
-  vip_subnet_id = data.openstack_networking_subnet_v2.subnet.id
-  security_group_ids = [data.openstack_networking_secgroup_v2.secgroup.id]
+  vip_subnet_id = var.subnet.id
+  security_group_ids = [var.secgroup_id]
 }
 
 resource "openstack_lb_listener_v2" "https" {

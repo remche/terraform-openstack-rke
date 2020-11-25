@@ -30,6 +30,6 @@ output "nodes_subnet" {
 }
 
 output "loadbalancer_floating_ip" {
-  value       = module.loadbalancer.floating_ip
+  value       = var.enable_loadbalancer ? module.loadbalancer.floating_ip : ""
   description = "The floating ip of the loadbalancer"
 }
