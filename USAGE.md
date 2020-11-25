@@ -233,6 +233,14 @@ Type: `list(string)`
 
 Default: `[]`
 
+### use\_octavia
+
+Description: Use Octavia LBaaS instead of Neutron Networking
+
+Type: `bool`
+
+Default: `false`
+
 ### system\_user
 
 Description: Default OS image user
@@ -461,3 +469,7 @@ Description: RKE cluster spec
 ### nodes\_subnet
 
 Description: The nodes subnet
+
+### loadbalancer\_floating\_ip
+
+Description: The floating ip of the loadbalancer
