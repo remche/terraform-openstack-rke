@@ -120,6 +120,16 @@ To enable this feature, provide the variables to the config file:
 boot_from_volume = true
 boot_volume_size = 20
 ```
+### Loadbalancer
+
+This module will create a layer 4 loadbalancer using LBaaS or LBaaSv2 in front of the master nodes or the edge nodes if there are any.
+It creates appropriate TCP listeners and monitors for HTTP (:80), HTTPS (:443) and Kubernetes API (:6443).
+
+To use Octavia instead of Neutron Networking as LBaaS, use
+
+```hcl
+use_octavia = true
+```
 
 ### Kubernetes version
 
