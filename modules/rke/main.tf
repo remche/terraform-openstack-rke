@@ -51,6 +51,10 @@ data "openstack_identity_auth_scope_v3" "scope" {
   name = "auth_scope"
 }
 
+data "openstack_networking_network_v2" "floating_net" {
+  name = var.floating_network
+}
+
 resource "rke_cluster" "cluster" {
 
   depends_on   = [var.rke_depends_on, null_resource.wait_for_master_ssh,
@@ -150,6 +154,10 @@ resource "rke_cluster" "cluster" {
         }
         block_storage {
           ignore_volume_az = var.ignore_volume_az
+        }
+        load_balancer {
+          floating_network_id = data.openstack_networking_network_v2.floating_net.id
+          use_octavia         = var.use_octavia
         }
       }
     }

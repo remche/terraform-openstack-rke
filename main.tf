@@ -82,6 +82,15 @@ module "worker" {
   availability_zones = var.availability_zones
 }
 
+module "loadbalancer" {
+  source           = "./modules/loadbalancer"
+  name_prefix      = "${var.cluster_name}-loadbalancer"
+  subnet_name      = module.network.nodes_subnet.name
+  secgroup_name    = module.secgroup.secgroup_name
+  floating_network = var.public_net_name
+  lb_members       = length(module.edge.nodes) > 0 ? module.edge.nodes : module.master.nodes
+}
+
 module "rke" {
   source = "./modules/rke"
   rke_depends_on = [module.master.associate_floating_ip,
@@ -110,6 +119,8 @@ module "rke" {
   mtu               = var.cni_mtu
   cloud_provider    = var.cloud_provider
   ignore_volume_az  = var.ignore_volume_az
+  floating_network  = var.public_net_name
+  use_octavia       = var.use_octavia
   deploy_traefik    = var.deploy_traefik
   traefik_image_tag = var.traefik_image_tag
   deploy_nginx      = var.deploy_nginx

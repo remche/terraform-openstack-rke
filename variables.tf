@@ -153,6 +153,12 @@ variable "availability_zones" {
   description = "The list of AZs to deploy nodes into"
 }
 
+variable "use_octavia" {
+  type        = bool
+  default     = false
+  description = "Use Octavia LBaaS instead of Neutron Networking"
+}
+
 #################
 # RKE variables #
 #################
