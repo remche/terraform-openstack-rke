@@ -137,6 +137,14 @@ Type: `string`
 
 Default: `null`
 
+### enable\_loadbalancer
+
+Description: Enable Octabia LB for master/edge nodes
+
+Type: `bool`
+
+Default: `false`
+
 ### master\_count
 
 Description: Number of master nodes (should be odd number...)
