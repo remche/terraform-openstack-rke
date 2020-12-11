@@ -10,7 +10,7 @@ terraform {
       version = ">=2.1.2"
     }
     openstack = {
-      source  = "terraform-providers/openstack"
+      source  = "terraform-provider-openstack/openstack"
       version = ">=1.24.0"
     }
     rke = {

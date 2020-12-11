@@ -4,7 +4,7 @@ terraform {
       source = "hashicorp/null"
     }
     openstack = {
-      source = "terraform-providers/openstack"
+      source = "terraform-provider-openstack/openstack"
     }
   }
   required_version = ">= 0.13.1"

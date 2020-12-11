@@ -7,7 +7,7 @@ terraform {
       source = "hashicorp/null"
     }
     openstack = {
-      source = "terraform-providers/openstack"
+      source = "terraform-provider-openstack/openstack"
     }
     rke = {
       source  = "rancher/rke"
