@@ -7,7 +7,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: ${{ github.event.pull_request.head.ref }}
+        ref: ${{ github.event.pull_request.head.sha }}
     - uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 0.13.1
@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: ${{ github.event.pull_request.head.ref }}
+        ref: ${{ github.event.pull_request.head.sha }}
     - name: Render terraform docs inside the USAGE.md and push changes back to PR branch
       uses: Dirrk/terraform-docs@v1.0.8
       with:
