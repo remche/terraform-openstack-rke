@@ -174,5 +174,6 @@ resource "rke_cluster" "cluster" {
 resource "local_file" "kube_cluster_yaml" {
   count             = var.write_kubeconfig ? 1 : 0
   filename          = "${path.root}/kube_config_cluster.yml"
+  file_permission   = "0600"
   sensitive_content = rke_cluster.cluster.kube_config_yaml
 }
