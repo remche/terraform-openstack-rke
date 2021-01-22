@@ -8,14 +8,15 @@ data "openstack_images_image_v2" "image" {
 }
 
 resource "openstack_compute_instance_v2" "instance" {
-  depends_on   = [var.node_depends_on]
-  count        = var.nodes_count
-  name         = "${var.name_prefix}-${format("%03d", count.index + 1)}"
-  image_name   = var.boot_from_volume ? null : var.image_name
-  flavor_name  = var.flavor_name
-  key_pair     = var.keypair_name
-  config_drive = var.config_drive
-  user_data    = var.user_data
+  depends_on              = [var.node_depends_on]
+  count                   = var.nodes_count
+  name                    = "${var.name_prefix}-${format("%03d", count.index + 1)}"
+  image_name              = var.boot_from_volume ? null : var.image_name
+  flavor_name             = var.flavor_name
+  key_pair                = var.keypair_name
+  config_drive            = var.config_drive
+  user_data               = var.user_data
+  stop_before_destroy     = true
   availability_zone_hints = length(var.availability_zones) > 0 ? var.availability_zones[count.index % length(var.availability_zones)] : null
 
   network {
