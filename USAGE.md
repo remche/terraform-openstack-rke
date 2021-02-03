@@ -84,7 +84,7 @@ Default: `"~/.ssh/id_rsa"`
 
 Description: Security group rules
 
-Type: `list`
+Type: `list(any)`
 
 Default:
 
