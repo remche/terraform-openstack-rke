@@ -1,5 +1,5 @@
 *.tfvars
-.terraform
+.terraform*
 kube_config_cluster.yml
 providers.tf
 terraform-provider-rke-*
