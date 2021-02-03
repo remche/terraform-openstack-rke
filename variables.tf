@@ -24,8 +24,8 @@ variable "ssh_key_file" {
 # Secgroup variables #
 ######################
 
-variable secgroup_rules {
-  type = list
+variable "secgroup_rules" {
+  type = list(any)
   default = [{ "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 22 },
     { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 6443 },
     { "source" = "0.0.0.0/0", "protocol" = "tcp", "port" = 80 },
