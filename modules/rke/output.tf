@@ -1,5 +1,5 @@
-data "null_data_source" "rke_cluster" {
-  inputs             = {
+locals {
+  rke_cluster = {
     api_server_url   = rke_cluster.cluster.api_server_url
     ca_crt           = rke_cluster.cluster.ca_crt
     client_cert      = rke_cluster.cluster.client_cert
@@ -9,6 +9,6 @@ data "null_data_source" "rke_cluster" {
 }
 
 output "rke_cluster" {
-  value       = data.null_data_source.rke_cluster.outputs
+  value       = local.rke_cluster
   description = "RKE cluster spec"
 }
