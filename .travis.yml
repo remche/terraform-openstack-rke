@@ -8,7 +8,7 @@ branches:
 env:
   global:
     # Software versions
-    - TERRAFORM_VERSION=0.14.5
+    - TERRAFORM_VERSION=0.15.3
     - TF_VAR_cluster_name=$(uuidgen -t)
     - TF_VAR_public_net_name="public"
     - TF_VAR_image_name="ubuntu-18.04-docker-x86_64"
