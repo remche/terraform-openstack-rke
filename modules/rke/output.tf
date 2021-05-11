@@ -11,4 +11,5 @@ locals {
 output "rke_cluster" {
   value       = local.rke_cluster
   description = "RKE cluster spec"
+  sensitive    = true
 }
