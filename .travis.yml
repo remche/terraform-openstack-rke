@@ -43,5 +43,5 @@ script:
   - terraform apply -auto-approve | grep -v remote-exec
 
 after_script:
-  - terraform destroy -force
+  - terraform destroy -auto-approve
 
