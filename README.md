@@ -7,6 +7,8 @@
 
 Inspired by [Marco Capuccini](https://github.com/mcapuccini/terraform-openstack-rke) work, rewritten from scratch for Terraform 0.12+ and new [terraform-rke-provider](https://github.com/rancher/terraform-provider-rke).
 
+> 💥 If you feel adventurous and want to try the next generation rke/openstack module, go to [terraform-openstack-rke2](https://github.com/remche/terraform-openstack-rke2/) :boom:
+
 ## Table of contents
 - [Prerequisites](#prerequisites)
 - [Upgrading to Terraform 0.13](#terraform-0.13-upgrade)
